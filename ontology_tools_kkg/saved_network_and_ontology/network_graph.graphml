@@ -1,0 +1,1431 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="label" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="nen3610:GeoObject" />
+    <node id="nen3610:Registratiegegevens" />
+    <node id="brt:BRTHogeEnLageZijde" />
+    <node id="geo:Geometry" />
+    <node id="gml:Curve" />
+    <node id="brt:Relief" />
+    <node id="brt:Terrein" />
+    <node id="gml:Surface" />
+    <node id="kad:AdresseerbaarObject" />
+    <node id="sor:Nummeraanduiding" />
+    <node id="sor:Registratiegegevens" />
+    <node id="kad:Ligplaats" />
+    <node id="kad:PubliekrechtelijkeBeperking" />
+    <node id="sor:Object" />
+    <node id="kad:Grondslag" />
+    <node id="kad:Brontype" />
+    <node id="kad:Mutatietype" />
+    <node id="kad:Standplaats" />
+    <node id="sor:Gebouwzone" />
+    <node id="kad:Hoogteklasse" />
+    <node id="sor:Verblijfsobject" />
+    <node id="sor:Perceel" />
+    <node id="sor:Gemeente" />
+    <node id="sor:Gebouw" />
+    <node id="kad:Overheidsorganisatie" />
+    <node id="sor:Provincie" />
+    <node id="sor:OpenbareRuimte" />
+    <node id="sor:Woonplaats" />
+    <node id="sor:RegistratiegegevensExtern" />
+    <node id="sor:Brondocument" />
+    <node id="sor:ObjectExtern" />
+    <node id="bag:Gemeente" />
+    <node id="bag:VoorkomenLVBAG" />
+    <node id="bag:Provincie" />
+    <node id="bag:GemeenteWoonplaatsRelatie" />
+    <node id="bag:Woonplaats" />
+    <node id="bag:KenmerkLigplaatsInOnderzoek" />
+    <node id="bag:HistorieInOnderzoek" />
+    <node id="bag:KenmerkNummeraanduidingInOnderzoek" />
+    <node id="bag:KenmerkOpenbareruimteInOnderzoek" />
+    <node id="bag:KenmerkPandInOnderzoek" />
+    <node id="bag:KenmerkStandplaatsInOnderzoek" />
+    <node id="bag:KenmerkVerblijfsobjectInOnderzoek" />
+    <node id="bag:KenmerkWoonplaatsInOnderzoek" />
+    <node id="bag:Ligplaats" />
+    <node id="bag:VoorkomenLV" />
+    <node id="bag:Nummeraanduiding" />
+    <node id="bag:OpenbareRuimte" />
+    <node id="bag:VerkorteNaamOpenbareRuimte" />
+    <node id="bag:Pand" />
+    <node id="bag:Standplaats" />
+    <node id="bag:Verblijfsobject" />
+    <node id="bag:_adresseerbaarObject" />
+    <node id="wbk:Buurt" />
+    <node id="wbk:Wijk" />
+    <node id="wbk:Gemeente" />
+    <node id="xsd:string" />
+    <node id="xsd:date" />
+    <node id="xsd:dateTime" />
+    <node id="xsd:positiveInteger" />
+    <node id="brt:Waterdeel" />
+    <node id="brt:_top10nlobject" />
+    <node id="brt:Wegdeel" />
+    <node id="xsd:integer" />
+    <node id="brt:Inrichtingselement" />
+    <node id="brt:RegistratiefGebied" />
+    <node id="brt:Plaats" />
+    <node id="brt:Gebouw" />
+    <node id="brt:Spoorbaandeel" />
+    <node id="brt:GeografischGebied" />
+    <node id="brt:FunctioneelGebied" />
+    <node id="geo:wktLiteral" />
+    <node id="brt:PlanTopografie" />
+    <node id="xsd:double" />
+    <node id="xsd:nonPositiveInteger" />
+    <node id="rdf:langString" />
+    <node id="xsd:gYear" />
+    <node id="sor:Overheidsorganisatie" />
+    <node id="xsd:nonNegativeInteger" />
+    <node id="bag:Voorkomen" />
+    <node id="xsd:boolean" />
+    <node id="xsd:anyURI" />
+    <node id="kad-con:ondergronds" />
+    <node id="kad-con:overkluisd" />
+    <node id="kad-con:kerncentrale_kernreactor" />
+    <node id="kad-con:klooster_abdij" />
+    <node id="kad-con:koeltoren" />
+    <node id="kad-con:fort" />
+    <node id="kad-con:telecommunicatietoren" />
+    <node id="kad-con:gemeentehuis" />
+    <node id="kad-con:waterradmolen" />
+    <node id="kad-con:tol" />
+    <node id="kad-con:markantGebouw" />
+    <node id="kad-con:huizenblok" />
+    <node id="kad-con:kas_warenhuis" />
+    <node id="kad-con:remise" />
+    <node id="kad-con:uitzichttoren" />
+    <node id="kad-con:werf" />
+    <node id="kad-con:transformatorstation" />
+    <node id="kad-con:synagoge" />
+    <node id="kad-con:radiotoren_televisietoren" />
+    <node id="kad-con:stationsgebouw" />
+    <node id="kad-con:sporthal" />
+    <node id="kad-con:universiteit" />
+    <node id="kad-con:museum" />
+    <node id="kad-con:ziekenhuis" />
+    <node id="kad-con:wegrestaurant" />
+    <node id="kad-con:kerk" />
+    <node id="kad-con:bunker" />
+    <node id="kad-con:pompstation" />
+    <node id="kad-con:windturbine" />
+    <node id="kad-con:militairGebouw" />
+    <node id="kad-con:recreatiecentrum" />
+    <node id="kad-con:moskee" />
+    <node id="kad-con:tankstation" />
+    <node id="kad-con:zwembad" />
+    <node id="kad-con:kapel" />
+    <node id="kad-con:hotel" />
+    <node id="kad-con:lichttoren" />
+    <node id="kad-con:zendtoren" />
+    <node id="kad-con:kasteel" />
+    <node id="kad-con:koepel" />
+    <node id="kad-con:brandtoren" />
+    <node id="kad-con:kunstijsbaan" />
+    <node id="kad-con:luchtwachttoren" />
+    <node id="kad-con:windmolen" />
+    <node id="kad-con:verkeerstoren" />
+    <node id="kad-con:bezoekerscentrum" />
+    <node id="kad-con:boortoren" />
+    <node id="kad-con:schoorsteen" />
+    <node id="kad-con:stadskantoor_hulpsecretarie" />
+    <node id="kad-con:psychiatrischZiekenhuis_psychiatrischCentrum" />
+    <node id="kad-con:ruïne" />
+    <node id="kad-con:veiling" />
+    <node id="kad-con:peilmeetstation" />
+    <node id="kad-con:manege" />
+    <node id="kad-con:postkantoor" />
+    <node id="kad-con:politiebureau" />
+    <node id="kad-con:radartoren" />
+    <node id="kad-con:paleis" />
+    <node id="kad-con:overigReligieusGebouw" />
+    <node id="kad-con:overig" />
+    <node id="kad-con:observatorium" />
+    <node id="kad-con:radarpost" />
+    <node id="kad-con:toren" />
+    <node id="kad-con:parkeerdak_parkeerdek_parkeergarage" />
+    <node id="kad-con:windmolen_korenmolen" />
+    <node id="kad-con:vuurtoren" />
+    <node id="kad-con:windmolen_watermolen" />
+    <node id="kad-con:kliniek_inrichting_sanatorium" />
+    <node id="kad-con:dok" />
+    <node id="kad-con:silo" />
+    <node id="kad-con:gevangenis" />
+    <node id="kad-con:stadion" />
+    <node id="kad-con:brandweerkazerne" />
+    <node id="kad-con:fabriek" />
+    <node id="kad-con:schaapskooi" />
+    <node id="kad-con:watertoren" />
+    <node id="kad-con:klokkentoren" />
+    <node id="kad-con:gemaal" />
+    <node id="kad-con:reddingboothuisje" />
+    <node id="kad-con:crematorium" />
+    <node id="kad-con:elektriciteitscentrale" />
+    <node id="kad-con:school" />
+    <node id="kad-con:tank" />
+    <node id="kad-con:inUitvoering" />
+    <node id="kad-con:bestaand" />
+    <node id="kad-con:buitenGebruik" />
+    <node id="kad-con:inGebruik" />
+    <node id="kad-con:plaatsAangewezen" />
+    <node id="kad-con:plaatsIngetrokken" />
+    <node id="kad-con:verbouwingPand" />
+    <node id="kad-con:pandGesloopt" />
+    <node id="kad-con:pandTenOnrechteOpgevoerd" />
+    <node id="kad-con:nietGerealiseerdPand" />
+    <node id="kad-con:pandInGebruik" />
+    <node id="kad-con:pandBuitenGebruik" />
+    <node id="kad-con:pandInGebruikNietIngemeten" />
+    <node id="kad-con:sloopvergunningVerleend" />
+    <node id="kad-con:bouwGestart" />
+    <node id="kad-con:bouwvergunningVerleend" />
+    <node id="http://bag.basisregistraties.overheid.nl/id/begrip/NaamgevingAangewezen" />
+    <node id="http://bag.basisregistraties.overheid.nl/id/begrip/NaamgevingIngetrokken" />
+    <node id="kad-con:geldig" />
+    <node id="kad-con:audit" />
+    <node id="kad-con:correctie" />
+    <node id="sor-con:kantoorfunctie" />
+    <node id="sor-con:winkelfunctie" />
+    <node id="sor-con:woonfunctie" />
+    <node id="sor-con:gezondheidsfunctie" />
+    <node id="sor-con:logiesfunctie" />
+    <node id="sor-con:bijeenkomstfunctie" />
+    <node id="sor-con:sportfunctie" />
+    <node id="sor-con:industriefunctie" />
+    <node id="sor-con:celfunctie" />
+    <node id="sor-con:onderwijsfunctie" />
+    <node id="kad-con:verblijfsobjectIngetrokken" />
+    <node id="kad-con:verblijfsobjectTenOnrechteOpgevoerd" />
+    <node id="kad-con:verbouwingVerblijfsobject" />
+    <node id="kad-con:verblijfsobjectInGebruikNietIngemeten" />
+    <node id="kad-con:nietGerealiseerdVerblijfsobject" />
+    <node id="kad-con:verblijfsobjectGevormd" />
+    <node id="kad-con:verblijfsobjectInGebruik" />
+    <node id="kad-con:verblijfsobjectBuitenGebruik" />
+    <node id="kad-con:woonplaatsIngetrokken" />
+    <node id="kad-con:woonplaatsAangewezen" />
+    <node id="kad-con:plan" />
+    <node id="kad-con:historie" />
+    <node id="kad-con:naamgevingUitgegeven" />
+    <node id="kad-con:naamgevingIngetrokken" />
+    <edge source="nen3610:GeoObject" target="nen3610:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="nen3610:GeoObject" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="nen3610:Registratiegegevens" target="nen3610:GeoObject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="nen3610:Registratiegegevens" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="nen3610:Registratiegegevens" target="xsd:dateTime">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="nen3610:Registratiegegevens" target="xsd:positiveInteger">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:BRTHogeEnLageZijde" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:BRTHogeEnLageZijde" target="gml:Curve">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:BRTHogeEnLageZijde" target="brt:Relief">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="brt:BRTHogeEnLageZijde">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="brt:Relief">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="brt:Terrein">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="kad:AdresseerbaarObject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="kad:Ligplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="kad:Standplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="sor:Gebouwzone">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="sor:Perceel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="sor:Gebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="sor:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="sor:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="bag:Ligplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="bag:Pand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="bag:Standplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="geo:Geometry" target="geo:wktLiteral">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="gml:Curve" target="brt:BRTHogeEnLageZijde">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="gml:Curve" target="brt:Relief">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Relief" target="brt:BRTHogeEnLageZijde">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Relief" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Relief" target="gml:Curve">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Relief" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Terrein" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Terrein" target="gml:Surface">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Terrein" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Terrein" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="gml:Surface" target="brt:Terrein">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="gml:Surface" target="bag:Ligplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="gml:Surface" target="bag:Pand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="gml:Surface" target="bag:Standplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:AdresseerbaarObject" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:AdresseerbaarObject" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:AdresseerbaarObject" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="kad:AdresseerbaarObject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="kad:Ligplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="kad:Standplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="sor:Perceel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="sor:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="sor:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="kad-con:naamgevingUitgegeven">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Nummeraanduiding" target="kad-con:naamgevingIngetrokken">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="kad:AdresseerbaarObject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="kad:Ligplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="kad:PubliekrechtelijkeBeperking">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="kad:Brontype">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="kad:Mutatietype">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="kad:Standplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Gebouwzone">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Perceel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Gebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Object">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:RegistratiegegevensExtern">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Brondocument">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="sor:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Registratiegegevens" target="xsd:double">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Ligplaats" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Ligplaats" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Ligplaats" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Ligplaats" target="kad-con:plaatsAangewezen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Ligplaats" target="kad-con:plaatsIngetrokken">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:PubliekrechtelijkeBeperking" target="sor:Object">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:PubliekrechtelijkeBeperking" target="kad:Grondslag">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:PubliekrechtelijkeBeperking" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Object" target="kad:PubliekrechtelijkeBeperking">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Object" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Grondslag" target="kad:PubliekrechtelijkeBeperking">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Brontype" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Mutatietype" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Mutatietype" target="sor:Gebouwzone">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Standplaats" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Standplaats" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Standplaats" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Standplaats" target="kad-con:plaatsAangewezen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Standplaats" target="kad-con:plaatsIngetrokken">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad:Hoogteklasse">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad:Mutatietype">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="xsd:double">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="xsd:nonPositiveInteger">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="xsd:positiveInteger">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:ondergronds">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:overkluisd">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kerncentrale_kernreactor">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:klooster_abdij">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:koeltoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:fort">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:telecommunicatietoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:gemeentehuis">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:waterradmolen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:tol">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:markantGebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:huizenblok">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kas_warenhuis">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:remise">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:uitzichttoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:werf">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:transformatorstation">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:synagoge">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:radiotoren_televisietoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:stationsgebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:sporthal">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:universiteit">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:museum">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:ziekenhuis">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:wegrestaurant">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kerk">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:bunker">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:pompstation">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:windturbine">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:militairGebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:recreatiecentrum">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:moskee">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:tankstation">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:zwembad">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kapel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:hotel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:lichttoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:zendtoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kasteel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:koepel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:brandtoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kunstijsbaan">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:luchtwachttoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:windmolen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:verkeerstoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:bezoekerscentrum">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:boortoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:schoorsteen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:stadskantoor_hulpsecretarie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:psychiatrischZiekenhuis_psychiatrischCentrum">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:ruïne">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:veiling">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:peilmeetstation">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:manege">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:postkantoor">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:politiebureau">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:radartoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:paleis">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:overigReligieusGebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:overig">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:observatorium">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:radarpost">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:toren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:parkeerdak_parkeerdek_parkeergarage">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:windmolen_korenmolen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:vuurtoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:windmolen_watermolen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:kliniek_inrichting_sanatorium">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:dok">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:silo">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:gevangenis">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:stadion">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:brandweerkazerne">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:fabriek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:schaapskooi">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:watertoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:klokkentoren">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:gemaal">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:reddingboothuisje">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:crematorium">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:elektriciteitscentrale">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:school">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:tank">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:inUitvoering">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:bestaand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:buitenGebruik">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="kad-con:inGebruik">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:gezondheidsfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:woonfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:onderwijsfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:industriefunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:sportfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:bijeenkomstfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:winkelfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:kantoorfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:logiesfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouwzone" target="sor-con:celfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Hoogteklasse" target="sor:Gebouwzone">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor:Gebouwzone">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor:Gebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="xsd:positiveInteger">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:kantoorfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:winkelfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:woonfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:gezondheidsfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:logiesfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:bijeenkomstfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:sportfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:industriefunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:celfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="sor-con:onderwijsfunctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verblijfsobjectIngetrokken">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verblijfsobjectTenOnrechteOpgevoerd">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verbouwingVerblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verblijfsobjectInGebruikNietIngemeten">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:nietGerealiseerdVerblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verblijfsobjectGevormd">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verblijfsobjectInGebruik">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Verblijfsobject" target="kad-con:verblijfsobjectBuitenGebruik">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="sor:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="xsd:nonNegativeInteger">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="kad-con:geldig">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="kad-con:audit">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Perceel" target="kad-con:correctie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gemeente" target="sor:Perceel">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gemeente" target="sor:Provincie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gemeente" target="wbk:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gemeente" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gemeente" target="xsd:gYear">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad:Overheidsorganisatie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="sor:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="wbk:Buurt">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="xsd:gYear">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:verbouwingPand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:pandGesloopt">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:pandTenOnrechteOpgevoerd">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:nietGerealiseerdPand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:pandInGebruik">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:pandBuitenGebruik">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:pandInGebruikNietIngemeten">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:sloopvergunningVerleend">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:bouwGestart">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:bouwvergunningVerleend">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:plan">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Gebouw" target="kad-con:historie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Overheidsorganisatie" target="sor:Gebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="kad:Overheidsorganisatie" target="rdf:langString">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Provincie" target="sor:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="sor:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="sor:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="rdf:langString">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="xsd:anyURI">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="http://bag.basisregistraties.overheid.nl/id/begrip/NaamgevingAangewezen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:OpenbareRuimte" target="http://bag.basisregistraties.overheid.nl/id/begrip/NaamgevingIngetrokken">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Woonplaats" target="sor:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Woonplaats" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Woonplaats" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Woonplaats" target="rdf:langString">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Woonplaats" target="kad-con:woonplaatsIngetrokken">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Woonplaats" target="kad-con:woonplaatsAangewezen">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:RegistratiegegevensExtern" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:RegistratiegegevensExtern" target="sor:ObjectExtern">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Brondocument" target="sor:Registratiegegevens">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Brondocument" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Brondocument" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:ObjectExtern" target="sor:RegistratiegegevensExtern">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Gemeente" target="bag:VoorkomenLVBAG">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Gemeente" target="bag:Provincie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Gemeente" target="bag:GemeenteWoonplaatsRelatie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Gemeente" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLVBAG" target="bag:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLVBAG" target="bag:GemeenteWoonplaatsRelatie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLVBAG" target="xsd:dateTime">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLVBAG" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLVBAG" target="xsd:boolean">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Provincie" target="bag:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Provincie" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Provincie" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:GemeenteWoonplaatsRelatie" target="bag:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:GemeenteWoonplaatsRelatie" target="bag:VoorkomenLVBAG">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:GemeenteWoonplaatsRelatie" target="bag:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Woonplaats" target="bag:GemeenteWoonplaatsRelatie">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Woonplaats" target="bag:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Woonplaats" target="bag:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Woonplaats" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Woonplaats" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Woonplaats" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkLigplaatsInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkLigplaatsInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkLigplaatsInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkLigplaatsInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkNummeraanduidingInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkOpenbareruimteInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkPandInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkStandplaatsInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkVerblijfsobjectInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="bag:KenmerkWoonplaatsInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:HistorieInOnderzoek" target="xsd:dateTime">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkNummeraanduidingInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkNummeraanduidingInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkNummeraanduidingInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkOpenbareruimteInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkOpenbareruimteInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkOpenbareruimteInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkPandInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkPandInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkPandInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkStandplaatsInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkStandplaatsInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkStandplaatsInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkVerblijfsobjectInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkVerblijfsobjectInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkVerblijfsobjectInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkWoonplaatsInOnderzoek" target="bag:HistorieInOnderzoek">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkWoonplaatsInOnderzoek" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:KenmerkWoonplaatsInOnderzoek" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Ligplaats" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Ligplaats" target="gml:Surface">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Ligplaats" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Ligplaats" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Ligplaats" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:Ligplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:Pand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:Standplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="bag:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="xsd:dateTime">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="xsd:boolean">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VoorkomenLV" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="bag:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="bag:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="bag:_adresseerbaarObject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Nummeraanduiding" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:OpenbareRuimte" target="bag:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:OpenbareRuimte" target="bag:Woonplaats">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:OpenbareRuimte" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:OpenbareRuimte" target="bag:VerkorteNaamOpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:OpenbareRuimte" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:OpenbareRuimte" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VerkorteNaamOpenbareRuimte" target="bag:OpenbareRuimte">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:VerkorteNaamOpenbareRuimte" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="gml:Surface">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="bag:Verblijfsobject">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Pand" target="xsd:gYear">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Standplaats" target="geo:Geometry">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Standplaats" target="gml:Surface">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Standplaats" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Standplaats" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Standplaats" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Verblijfsobject" target="bag:Pand">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Verblijfsobject" target="bag:VoorkomenLV">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Verblijfsobject" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Verblijfsobject" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Verblijfsobject" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:_adresseerbaarObject" target="bag:Nummeraanduiding">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="wbk:Buurt" target="sor:Gebouw">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="wbk:Buurt" target="wbk:Wijk">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="wbk:Wijk" target="wbk:Buurt">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="wbk:Wijk" target="wbk:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="wbk:Gemeente" target="wbk:Wijk">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="wbk:Gemeente" target="sor:Gemeente">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Waterdeel" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Waterdeel" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:_top10nlobject" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:_top10nlobject" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:_top10nlobject" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Wegdeel" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Wegdeel" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Inrichtingselement" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Inrichtingselement" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:RegistratiefGebied" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Plaats" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Plaats" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Gebouw" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Gebouw" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Spoorbaandeel" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:Spoorbaandeel" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:GeografischGebied" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:FunctioneelGebied" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="brt:PlanTopografie" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="sor:Overheidsorganisatie" target="xsd:string">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Voorkomen" target="xsd:dateTime">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Voorkomen" target="xsd:date">
+      <data key="d0">none</data>
+    </edge>
+    <edge source="bag:Voorkomen" target="xsd:integer">
+      <data key="d0">none</data>
+    </edge>
+  </graph>
+</graphml>

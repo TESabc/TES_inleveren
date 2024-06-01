@@ -1,0 +1,5672 @@
+[
+  {
+    "qid": 1,
+    "question": "geef mij de panden met een perceel oppervlak minder 1066m2 in almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?po < 1066) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "1066"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 2,
+    "question": "geef mij de hoeveelheid panden in almelo met perceel oppervlakte is 294 m",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?po = 294) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "gelijk"
+      ],
+      "parcel_filter_values": [
+        "294"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 3,
+    "question": "hoi loki mag ik windmolen met gebouw bouwjaar gelijk 943 in laan enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. FILTER (str(?bo) = '943') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "straat",
+      "brt_property_key": "windmolen",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "943"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 4,
+    "question": "vind de grootte gebouw in gehucht enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 5,
+    "question": "welk paardenrijverblijf in land heeft het laatste pand",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:manege. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "land",
+      "brt_property_key": "manege",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 6,
+    "question": "geef mij alle woningen in dedemsvaart met perceel oppervlakte kleiner 035",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?po < 035) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "035"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "dedemsvaart"
+      }
+    }
+  },
+  {
+    "qid": 7,
+    "question": "wat is de oudste windturbines in laan almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "straat",
+      "brt_property_key": "windturbine",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 8,
+    "question": "ik wil de woningen en hun bouwjaren in provincie enschede",
+    "sparql_query": "SELECT DISTINCT ?vbo ?bo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie. ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "owl:sameAs"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "provincie",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "bouwjaar",
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 9,
+    "question": "ik wil de gemalen in de gemeente enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gemaal. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "gemeente",
+      "brt_property_key": "gemaal",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 10,
+    "question": "wat is de oudste reddingsboothuis in overijssel",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:reddingboothuisje. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "owl:sameAs",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "provincie",
+      "brt_property_key": "reddingboothuisje",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": "overijssel"
+    }
+  },
+  {
+    "qid": 11,
+    "question": "wat is de oudste radartorens in de stad enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:radartoren. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": null,
+      "granularity_key": "woonplaats",
+      "brt_property_key": "radartoren",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 12,
+    "question": "mag ik de kleine gebouw in wijk almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "sor:oppervlakte",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 13,
+    "question": "Geef mij het kleinste perceel behorend tot sporthallen",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:sporthal. } ORDER BY ASC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "sor:oppervlakte"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "percelen",
+      "granularity_key": "land",
+      "brt_property_key": "sporthal",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 14,
+    "question": "geef mij het grootste perceel van een windturbines in de straat almelo",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } ORDER BY DESC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "percelen",
+      "granularity_key": "straat",
+      "brt_property_key": "windturbine",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 15,
+    "question": "wat is het grootste brandstoftank in enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:tank. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": "tank",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 16,
+    "question": "ik wil alle percelen en de bijbehorende geometrie in wijk raalte",
+    "sparql_query": "SELECT DISTINCT ?per ?geo_wgs84 WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; geo:hasGeometry/geo:asWKT ?geo_wgs84. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "geo:asWKT",
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "geo:hasGeometry",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:hoofdadres"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "percelen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "geometrie",
+      "own_address": false,
+      "address_data": {
+        "city": "raalte"
+      }
+    }
+  },
+  {
+    "qid": 17,
+    "question": "hoeveel vuurtoren staan in",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:vuurtoren. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "land",
+      "brt_property_key": "vuurtoren",
+      "amount_key": "aantal",
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 18,
+    "question": "welke zwembaden kan ik vinden in wijk collendoorn met ontstaansjaar gelijk aan 20",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:zwembad. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) = '20') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "zwembad",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "20"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "collendoorn"
+      }
+    }
+  },
+  {
+    "qid": 19,
+    "question": "wat is de hoeveelheid panden in enschede met vloer oppervlakte 88 en gebouw bouwjaar gelijk 400",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) = '400') FILTER (?wo = 88) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "400"
+      ],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "88"
+      ],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 20,
+    "question": "hoeveel pand zijn tussen bouwjaar 69 en 99 in provincie enschede gebouwd",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '69') FILTER (str(?bo) < '99') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw"
+    ],
+    "golden_relations": [
+      "owl:sameAs",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "provincie",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "groter",
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "69",
+        "99"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 21,
+    "question": "wat zijn de remises in provincie enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:remise. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "owl:sameAs",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "provincie",
+      "brt_property_key": "remise",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 22,
+    "question": "welke schaapskooi in enschede is het grootst",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:schaapskooi. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": "schaapskooi",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 23,
+    "question": "geef me de crematoriums in almelo met perceeloppervlakte groter dan 7054 en huis oppervlak 9 m2",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:crematorium. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?wo = 9) FILTER (?po > 7054) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "woonplaats",
+      "brt_property_key": "crematorium",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "9"
+      ],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "7054"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 24,
+    "question": "welke hoeveelheid panden staan in almelo met huis oppervlak groter 8 en gebouw bouwjaar kleiner 788",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) < '788') FILTER (?wo > 8) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "788"
+      ],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "8"
+      ],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 25,
+    "question": "geef mij het kleinste perceel in gemeente almelo behorend tot een kerk",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kerk. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "percelen",
+      "granularity_key": "gemeente",
+      "brt_property_key": "kerk",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 26,
+    "question": "mag ik de grootste monument met gebouwd nieuwer 21 in wijk enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '21') } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:grondslag"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "monumenten",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "21"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 27,
+    "question": "hoeveel remisen met perceeloppervlakte groter dan 248 staan in provincie ommen",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:hoofdadres ?na. ?geb a sor:Gebouw. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:remise. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (?po > 248) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "owl:sameAs",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "provincie",
+      "brt_property_key": "remise",
+      "amount_key": "aantal",
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "248"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 28,
+    "question": "geef mij de zwembad in buurt teteringen",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:zwembad. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "zwembad",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "teteringen"
+      }
+    }
+  },
+  {
+    "qid": 29,
+    "question": "mag ik de grootste huis met bouwjaar ouder dan 6 in buurt nieuw-vossemeer",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie; sor:oppervlakte ?wo. ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) < '6') } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "huizen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "6"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "nieuw-vossemeer"
+      }
+    }
+  },
+  {
+    "qid": 30,
+    "question": "geef mij het grootste perceel in gemeente dedemsvaart behorend tot een kerk",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kerk. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "percelen",
+      "granularity_key": "gemeente",
+      "brt_property_key": "kerk",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "dedemsvaart"
+      }
+    }
+  },
+  {
+    "qid": 31,
+    "question": "ik wil de universiteit in",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:universiteit. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "land",
+      "brt_property_key": "universiteit",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 32,
+    "question": "welke huizen hebben een woningoppervlakte 78 en gebouw bouwjaar groter 464 in enschede",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na; sor:oppervlakte ?wo; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) > '464') FILTER (?wo = 78) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "464"
+      ],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "78"
+      ],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 33,
+    "question": "wat is de kleinste gebouw in gemeente waalwijk",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "sor:oppervlakte",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "gemeente",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 34,
+    "question": "ik wil de hospitalen in laan heino",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:ziekenhuis. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "straat",
+      "brt_property_key": "ziekenhuis",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "heino"
+      }
+    }
+  },
+  {
+    "qid": 35,
+    "question": "ik wil de kleine huizenblokken in buurt enschede zien met jaar gelijk 941",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:huizenblok. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) = '941') } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "huizenblok",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "941"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 36,
+    "question": "ik wil alle percelen en de bijbehorende perceeloppervlaktes in woonplaats ommen",
+    "sparql_query": "SELECT DISTINCT ?per ?po WHERE { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:oppervlakte",
+      "sor:ligtIn",
+      "skos:prefLabel"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "percelen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "perceeloppervlakte",
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 37,
+    "question": "ik wil de bedehuisje in provincie enschede zien gebouwd in 960",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kapel. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) = '960') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "owl:sameAs",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "provincie",
+      "brt_property_key": "kapel",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "960"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 38,
+    "question": "wat zijn de waterradmolens in laan lutten",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:waterradmolen. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "straat",
+      "brt_property_key": "waterradmolen",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "lutten"
+      }
+    }
+  },
+  {
+    "qid": 39,
+    "question": "geef mij de grootste huizenblokken in gemeente enschede met gebouwd van voor 818",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:huizenblok. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '818') } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "gemeente",
+      "brt_property_key": "huizenblok",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "818"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 40,
+    "question": "wat is de grootste windturbinen in wijk enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "windturbine",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 41,
+    "question": "geef mij de oudste reddingsboothuis in wijk enschede met gebouwd in nieuwer 9 en met een perceel oppervlakte minder dan 98 en een woning oppervlakte meer 4",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo; sor:hoofdadres ?na. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:reddingboothuisje. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '9') FILTER (?wo > 4) FILTER (?po < 98) } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "reddingboothuisje",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "9"
+      ],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "4"
+      ],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "98"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 42,
+    "question": "geef mij het grootste perceel in gemeente waalwijk behorend tot een kerk",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kerk. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "percelen",
+      "granularity_key": "gemeente",
+      "brt_property_key": "kerk",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 43,
+    "question": "wat is de oudste reddingboothuisje in overijssel",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:reddingboothuisje. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "owl:sameAs",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "provincie",
+      "brt_property_key": "reddingboothuisje",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": "overijssel"
+    }
+  },
+  {
+    "qid": 44,
+    "question": "geef mij de school in wijk waalwijk",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:school. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "school",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 45,
+    "question": "hoeveel verblijfsobjecten zijn tussen bouwjaar 87 en 4 in provincie haaksbergen gebouwd",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?vbo) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '87') FILTER (str(?bo) < '4') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "owl:sameAs",
+      "sor:maaktDeelUitVan",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "provincie",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "groter",
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "87",
+        "4"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "haaksbergen"
+      }
+    }
+  },
+  {
+    "qid": 46,
+    "question": "hoeveel gebouw zijn tussen bouwjaar 4594 en 82 in gemeente enschede gebouwd",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '4594') FILTER (str(?bo) < '82') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "gemeente",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "groter",
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "4594",
+        "82"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 47,
+    "question": "ik wil alle woningen hebben en ook wanneer de woningen gebouwd zijn in almelo",
+    "sparql_query": "SELECT DISTINCT ?vbo ?bo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "bouwjaar",
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 48,
+    "question": "geef me de synagogen in met gebouw bouwjaar van voor 61",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:synagoge. FILTER (str(?bo) < '61') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "land",
+      "brt_property_key": "synagoge",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "61"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 49,
+    "question": "welke reddingboothuisje is het oudste",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:reddingboothuisje. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "land",
+      "brt_property_key": "reddingboothuisje",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 50,
+    "question": "geef mij de zwembaden in land met perceeloppervlakte meer 2222",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:hoofdadres ?na. ?geb a sor:Gebouw. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:zwembad. FILTER (?po > 2222) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "land",
+      "brt_property_key": "zwembad",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "2222"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 51,
+    "question": "hoi loki mag ik kapellen met gebouwd nieuwer 424 in provincie ommen",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kapel. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '424') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "owl:sameAs",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "provincie",
+      "brt_property_key": "kapel",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "424"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 52,
+    "question": "mag ik de recentste vuurtoren met gebouwd in gelijk aan 13 in buurt enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:vuurtoren. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) = '13') } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "vuurtoren",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "13"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 53,
+    "question": "welke gemeentehuizen staan er in provincie heino",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gemeentehuis. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "owl:sameAs",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "provincie",
+      "brt_property_key": "gemeentehuis",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "heino"
+      }
+    }
+  },
+  {
+    "qid": 54,
+    "question": "wat is de kleine pand in buurt waalwijk",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "sor:oppervlakte",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 55,
+    "question": "geef mij alle woningen in hardenberg waarvan de perceel oppervlak van 574 m is",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?po = 574) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "gelijk"
+      ],
+      "parcel_filter_values": [
+        "574"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "hardenberg"
+      }
+    }
+  },
+  {
+    "qid": 56,
+    "question": "wat is de meest recente schoorsteen in nederland",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:schoorsteen. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": null,
+      "granularity_key": "land",
+      "brt_property_key": "schoorsteen",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 57,
+    "question": "geef mij de koeltoren in buurt enschede met vloeroppervlakte meer 61 meter",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:koeltoren. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (?wo > 61) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "koeltoren",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "61"
+      ],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 58,
+    "question": "geef mij het grootte verblijfsobjecten in provincie waalwijk",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "owl:sameAs",
+      "sor:oppervlakte",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "provincie",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 59,
+    "question": "hoeveel huizenblok staan in",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:huizenblok. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "land",
+      "brt_property_key": "huizenblok",
+      "amount_key": "aantal",
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 60,
+    "question": "hoeveel pand zijn met gebouwd in kleiner 4717 in gemeente enschede gebouwd",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '4717') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "gemeente",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "4717"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 61,
+    "question": "ik wil de woningen en hun oppervlaktes weten in enschede",
+    "sparql_query": "SELECT DISTINCT ?vbo ?wo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na; sor:oppervlakte ?wo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "oppervlakte",
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 62,
+    "question": "welk waterradmolen in de land heeft het kleinste oppervlakte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:waterradmolen. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype",
+      "sor:oppervlakte"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "land",
+      "brt_property_key": "waterradmolen",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 63,
+    "question": "wat zijn de toren in wijk heino",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:toren. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "toren",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "heino"
+      }
+    }
+  },
+  {
+    "qid": 64,
+    "question": "vind de eerste pand in laan enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "straat",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 65,
+    "question": "hoeveel kapel staan in laan hardenberg",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kapel. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "straat",
+      "brt_property_key": "kapel",
+      "amount_key": "aantal",
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "hardenberg"
+      }
+    }
+  },
+  {
+    "qid": 66,
+    "question": "mag ik de eerste koeltorens met gebouwd na 848 in buurt enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:koeltoren. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) > '848') } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "koeltoren",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "848"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 67,
+    "question": "geef mij het kleinste perceel in gemeente bergentheim behorend tot een kerk",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kerk. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "percelen",
+      "granularity_key": "gemeente",
+      "brt_property_key": "kerk",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "bergentheim"
+      }
+    }
+  },
+  {
+    "qid": 68,
+    "question": "mag ik de eerste academie met bouwjaar voor 15 in laan enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:universiteit. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. FILTER (str(?bo) < '15') } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": null,
+      "granularity_key": "straat",
+      "brt_property_key": "universiteit",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "15"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 69,
+    "question": "ik wil de meest recente gebouwen in laan almelo zien met gebouwd kleiner dan 897",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. FILTER (str(?bo) < '897') } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "straat",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "897"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 70,
+    "question": "vind de eerste tank in straat enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:tank. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:hoofdadres",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": null,
+      "granularity_key": "straat",
+      "brt_property_key": "tank",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 71,
+    "question": "ik wil de kleinste gebouwen met monumentale status in gemeente teteringen zien met jaar kleiner 1",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '1') } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:grondslag"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "monumenten",
+      "granularity_key": "gemeente",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "1"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "teteringen"
+      }
+    }
+  },
+  {
+    "qid": 72,
+    "question": "wat is de nieuwste brandtorens in de buurt udenhout",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:brandtoren. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "brandtoren",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "udenhout"
+      }
+    }
+  },
+  {
+    "qid": 73,
+    "question": "welk waterradmolen in de buurt sibculo heeft het kleinste oppervlakte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:waterradmolen. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "waterradmolen",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "sibculo"
+      }
+    }
+  },
+  {
+    "qid": 74,
+    "question": "wat is de grootste huis in de buurt enschede",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie; sor:oppervlakte ?wo. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "huizen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 75,
+    "question": "geef mij de oudste transformatorstationen in buurt kloosterhaar",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:transformatorstation. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "transformatorstation",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "kloosterhaar"
+      }
+    }
+  },
+  {
+    "qid": 76,
+    "question": "ik wil alle percelen behorend tot bunker in",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na. ?per a sor:Perceel; sor:hoortBij ?na. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:bunker. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "land",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "percelen",
+      "granularity_key": "land",
+      "brt_property_key": "bunker",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {}
+    }
+  },
+  {
+    "qid": 77,
+    "question": "wat is de grootste monument in de buurt waalwijk",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; ^kad:gevestigdOp/kad:grondslag ?grondslag. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:grondslag"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "monumenten",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 78,
+    "question": "geef mij alle woningen in teteringen waarvan de perceel oppervlak minder 05vierkante meter is",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?po < 05) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "05"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "teteringen"
+      }
+    }
+  },
+  {
+    "qid": 79,
+    "question": "geef me de postkantoor in buurt enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:postkantoor. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "postkantoor",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 80,
+    "question": "ik wil alle percelen en de geometrie daarvan in enschede",
+    "sparql_query": "SELECT DISTINCT ?per ?geo_wgs84 WHERE { ?per a sor:Perceel; sor:hoortBij ?na; geo:hasGeometry/geo:asWKT ?geo_wgs84. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "geo:asWKT",
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "geo:hasGeometry",
+      "skos:prefLabel"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "percelen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "geometrie",
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 81,
+    "question": "geef mij de nieuwste werven in wijk enschede met gebouwd kleiner 4",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:werf. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '4') } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "werf",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "4"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 82,
+    "question": "geef mij alle woningen in nieuwerkerk met perceeloppervlakte minder 1311meter",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:gebruiksdoel sor-con:woonfunctie; sor:hoofdadres ?na. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?po < 1311) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "sor:gebruiksdoel",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "1311"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "nieuwerkerk"
+      }
+    }
+  },
+  {
+    "qid": 83,
+    "question": "geef mij de woningen en hun oppervlaktes in wijk ommen",
+    "sparql_query": "SELECT DISTINCT ?vbo ?wo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie; sor:oppervlakte ?wo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "oppervlakte",
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 84,
+    "question": "ik wil alle verblijfsobjecten behorend tot school in ommen",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:school. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": "school",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 85,
+    "question": "welke maneges zijn te vinden in wijk udenhout",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:manege. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "manege",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "udenhout"
+      }
+    }
+  },
+  {
+    "qid": 86,
+    "question": "geef mij de tankstation in buurt enschede met ontstaansjaar kleiner dan 9244",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:tankstation. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) < '9244') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "tankstation",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "9244"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 87,
+    "question": "geef mij het perceel met het grootste perceelsoppervlakte behorend tot werf in wijk enschede met gebouwd in groter 2",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:werf. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '2') } ORDER BY DESC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "percelen",
+      "granularity_key": "wijk",
+      "brt_property_key": "werf",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "2"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 88,
+    "question": "welke monument hebben een perceel oppervlak minder 6 m2 en woning oppervlakte kleiner 469 in hardenberg",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw ^kad:gevestigdOp/kad:grondslag ?grondslag. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (?wo < 469) FILTER (?po < 6) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:grondslag",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "monumenten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [
+        "kleiner"
+      ],
+      "house_filter_values": [
+        "469"
+      ],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "6"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "hardenberg"
+      }
+    }
+  },
+  {
+    "qid": 89,
+    "question": "geef mij het oudste monument in straat enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:grondslag",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "monumenten",
+      "granularity_key": "straat",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 90,
+    "question": "mag ik de grootte gebouw met bouwjaar gelijk aan 7 in wijk almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) = '7') } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "7"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 91,
+    "question": "welk koeltoren in wijk enschede heeft het kleinste gebouwen",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:koeltoren. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "koeltoren",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 92,
+    "question": "mag ik de kleinste gebouwen met monumentale status met gebouwd van na 858 in gehucht enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) > '858') } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:grondslag",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "monumenten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "858"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 93,
+    "question": "geef me de windturbine in wijk almelo met bouwjaar voor 3416",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '3416') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "windturbine",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "3416"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 94,
+    "question": "geef mij het perceel met het grootste perceelsoppervlakte behorend tot kapel in buurt enschede met bouwjaar na 950",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kapel. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) > '950') } ORDER BY DESC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "percelen",
+      "granularity_key": "buurt",
+      "brt_property_key": "kapel",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "950"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 95,
+    "question": "ik wil de kleinste verblijfsobjecten in dorp teteringen zien met jaar gelijk aan 5117",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:oppervlakte ?wo; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) = '5117') } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "5117"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "teteringen"
+      }
+    }
+  },
+  {
+    "qid": 96,
+    "question": "wat is de grootte paardenrijverblijf in wijk enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:manege. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "manege",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 97,
+    "question": "welk windmolens in buurt balkbrug heeft het grootste panden",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "windmolen",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "balkbrug"
+      }
+    }
+  },
+  {
+    "qid": 98,
+    "question": "wat is de nieuwste gebouwen in wijk enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 99,
+    "question": "ik wil de bedeplaats in buurt heino",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kapel. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "kapel",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "heino"
+      }
+    }
+  },
+  {
+    "qid": 100,
+    "question": "geef mij de woningen en hun oppervlaktes in wijk anerveen",
+    "sparql_query": "SELECT DISTINCT ?vbo ?wo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie; sor:oppervlakte ?wo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "oppervlakte",
+      "own_address": false,
+      "address_data": {
+        "city": "anerveen"
+      }
+    }
+  },
+  {
+    "qid": 101,
+    "question": "hoeveel gebouw zijn tussen bouwjaar 9 en 155 in wijk haaksbergen gebouwd",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '9') FILTER (str(?bo) < '155') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": "aantal",
+      "year_filter_options": [
+        "groter",
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "9",
+        "155"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "haaksbergen"
+      }
+    }
+  },
+  {
+    "qid": 102,
+    "question": "ik wil alle verblijfsobjecten behorend tot stadhuis in gemeente broekland",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gemeentehuis. ?gemeente sdo0:identifier \"#gemeentecode\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "gemeente",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "gemeente",
+      "brt_property_key": "gemeentehuis",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "broekland"
+      }
+    }
+  },
+  {
+    "qid": 103,
+    "question": "wat is de kleinste panden in buurt raalte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "sor:oppervlakte",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "raalte"
+      }
+    }
+  },
+  {
+    "qid": 104,
+    "question": "welke monument hebben een woon oppervlakte  groter dan 848 en bouwjaar nieuwer 7120 en perceel oppervlakte kleiner dan 15 in bergentheim",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) > '7120') FILTER (?wo > 848) FILTER (?po < 15) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:grondslag",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "monumenten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "7120"
+      ],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "848"
+      ],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "15"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "bergentheim"
+      }
+    }
+  },
+  {
+    "qid": 105,
+    "question": "ik wil alle percelen en de bijbehorende perceeloppervlaktes in buurt waalwijk",
+    "sparql_query": "SELECT DISTINCT ?per ?po WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "percelen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "perceeloppervlakte",
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 106,
+    "question": "ik wil alle percelen en de bijbehorende perceeloppervlaktes in buurt almelo",
+    "sparql_query": "SELECT DISTINCT ?per ?po WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "percelen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "perceeloppervlakte",
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 107,
+    "question": "ik wil de kleinste forten in wijk almelo zien met gebouwd in gelijk aan 821",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:fort. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) = '821') } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "fort",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "821"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 108,
+    "question": "ik wil de meest recente verblijfsobjecten in straat almelo zien met jaar ouder dan 32",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel \"#straatnaam\"@nl; ^sor:ligtAan ?na. FILTER (str(?bo) < '32') } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "skos:prefLabel"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "straat",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "straat",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "32"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 109,
+    "question": "ik wil alle verblijfsobjecten behorend tot schoorsteen in ommen",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:schoorsteen. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "kad:gebouwtype",
+      "skos:prefLabel"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": "schoorsteen",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 110,
+    "question": "wat is de grootte vesting in buurt raalte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:fort. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "fort",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "raalte"
+      }
+    }
+  },
+  {
+    "qid": 111,
+    "question": "geef mij de oudste koeltorens in buurt enschede met gebouwd voor 309 en met een perceel oppervlak meer dan 06m en een huis oppervlak van 4vierkante meter",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo; sor:hoofdadres ?na. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:koeltoren. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) < '309') FILTER (?wo = 4) FILTER (?po > 06) } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "koeltoren",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "309"
+      ],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "4"
+      ],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "06"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 112,
+    "question": "welke monument hebben een huis oppervlak groter 757 en gebouwd in 48 en perceel oppervlak groter dan 88 in almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) = '48') FILTER (?wo > 757) FILTER (?po > 88) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Perceel",
+      "sor:Woonplaats",
+      "sor:Verblijfsobject",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:hoortBij",
+      "sor:ligtIn",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:grondslag",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "monumenten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "48"
+      ],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "757"
+      ],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "88"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 113,
+    "question": "welke doks kan ik vinden in buurt enschede met gebouw bouwjaar 8378",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:dok. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) = '8378') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "dok",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "8378"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 114,
+    "question": "geef me de strafinrichting in buurt raalte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gevangenis. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "gevangenis",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "raalte"
+      }
+    }
+  },
+  {
+    "qid": 115,
+    "question": "welke verblijfsobject hebben een woonoppervlakte meer dan 0245 en bouwjaar kleiner dan 7 in ommen",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:oppervlakte ?wo; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) < '7') FILTER (?wo > 0245) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "skos:prefLabel"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "7"
+      ],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "0245"
+      ],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 116,
+    "question": "mag ik de kleinste monument in buurt enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; ^kad:gevestigdOp/kad:grondslag ?grondslag. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:grondslag"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "monumenten",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 117,
+    "question": "geef mij de oudste paleis in buurt hardenberg met gebouw bouwjaar groter dan 34",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:paleis. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) > '34') } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "paleis",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "34"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "hardenberg"
+      }
+    }
+  },
+  {
+    "qid": 118,
+    "question": "welke verblijfsobjecten hebben een vloeroppervlakte meer 13vierkante meter en gebouwd voor 32 en perceel oppervlakte meer dan 47 in provincie heeten",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo; sor:hoofdadres ?na. ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '32') FILTER (?wo > 13) FILTER (?po > 47) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Perceel",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "owl:sameAs",
+      "sor:oppervlakte",
+      "sor:hoofdadres"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "provincie",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "32"
+      ],
+      "house_filter_options": [
+        "groter"
+      ],
+      "house_filter_values": [
+        "13"
+      ],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "47"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "heeten"
+      }
+    }
+  },
+  {
+    "qid": 119,
+    "question": "wat is de meest recente pand hogeschool in wijk lutten",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:universiteit. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "universiteit",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "lutten"
+      }
+    }
+  },
+  {
+    "qid": 120,
+    "question": "vind de meest recente verblijfsobjecten in provincie enschede",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. ?gemeente geo:sfWithin provincie:#provinciecode. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "owl:sameAs",
+      "sor:maaktDeelUitVan",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "verblijfsobjecten",
+    "granularity_key": "provincie",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "verblijfsobjecten",
+      "granularity_key": "provincie",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 121,
+    "question": "mag ik de meest recente gebouwen in wijk enschede",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "geo:sfWithin",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 122,
+    "question": "welke gebouw hebben een woonoppervlakte van 4m2 en ontstaansjaar van 4845 en perceel oppervlak kleiner dan 1meter in wijk heino",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo; sor:hoofdadres ?na. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) = '4845') FILTER (?wo = 4) FILTER (?po < 1) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "4845"
+      ],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "4"
+      ],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "1"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "heino"
+      }
+    }
+  },
+  {
+    "qid": 123,
+    "question": "geef mij het perceel met het kleinste perceelsoppverklate behorend tot synagogen in wijk enschede met bouwjaar nieuwer dan 958",
+    "sparql_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb sor:oorspronkelijkBouwjaar ?bo. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:synagoge. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '958') } ORDER BY ASC (?po) LIMIT 1",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "percelen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "percelen",
+      "granularity_key": "wijk",
+      "brt_property_key": "synagoge",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "958"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 124,
+    "question": "waar zijn de gemeentehuizen in wijk waalwijk",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gemeentehuis. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "gemeentehuis",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 125,
+    "question": "welk telecommunicatietorens in de buurt enschede heeft het kleinste oppervlakte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:telecommunicatietoren. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "telecommunicatietoren",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 126,
+    "question": "ik wil de woningen en hun bouwjaren in wijk waalwijk",
+    "sparql_query": "SELECT DISTINCT ?vbo ?bo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie. ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "huizen",
+      "granularity_key": "wijk",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": "bouwjaar",
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 127,
+    "question": "wat is de grootste gebouwen in de buurt almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sdo0:identifier",
+      "sor:oppervlakte",
+      "geo:sfWithin",
+      "sor:maaktDeelUitVan"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 128,
+    "question": "geef mij de nieuwste synagoge in wijk almelo",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:synagoge. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "synagoge",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 129,
+    "question": "wat zijn de parkeergarages in wijk biezenmortel met gebouwd in voor 8",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:parkeerdak_parkeerdek_parkeergarage. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '8') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "parkeerdak, parkeerdek, parkeergarage",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "8"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "biezenmortel"
+      }
+    }
+  },
+  {
+    "qid": 130,
+    "question": "in buurt hardenberg welke radarpost zijn ontstaansjaar van voor 3 gebouwd",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:radarpost. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) < '3') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "radarpost",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "3"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "hardenberg"
+      }
+    }
+  },
+  {
+    "qid": 131,
+    "question": "welke universiteit staan er in wijk ommen",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:universiteit. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "universiteit",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 132,
+    "question": "in buurt enschede welke gemaal zijn jaar gelijk 2 gebouwd",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gemaal. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) = '2') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "gemaal",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "2"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 133,
+    "question": "welk bunkers in de buurt bruchterveld heeft het grootste oppervlakte",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:bunker. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY DESC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "biggest",
+      "property_key": "gebouwen",
+      "granularity_key": "buurt",
+      "brt_property_key": "bunker",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "bruchterveld"
+      }
+    }
+  },
+  {
+    "qid": 134,
+    "question": "geef mij de oudste schoorstenen in wijk enschede met ontstaansjaar 3 en met een minder 084 en een woon oppervlakte  is 78m",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo; sor:hoofdadres ?na. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:schoorsteen. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) = '3') FILTER (?wo = 78) FILTER (?po < 084) } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "schoorsteen",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "3"
+      ],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "78"
+      ],
+      "parcel_filter_options": [
+        "kleiner"
+      ],
+      "parcel_filter_values": [
+        "084"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 135,
+    "question": "geef me de school in buurt almelo met gebouwd in van 4 en perceel oppervlakte is 5m2",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:hoofdadres ?na. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:school. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (str(?bo) = '4') FILTER (?po = 5) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "school",
+      "amount_key": null,
+      "year_filter_options": [
+        "gelijk"
+      ],
+      "year_filter_values": [
+        "4"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "gelijk"
+      ],
+      "parcel_filter_values": [
+        "5"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "almelo"
+      }
+    }
+  },
+  {
+    "qid": 136,
+    "question": "geef mij de nieuwste fort in wijk enschede met perceel oppervlak meer dan 2949",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:hoofdadres ?na. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:fort. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (?po > 2949) } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "fort",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "2949"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "enschede"
+      }
+    }
+  },
+  {
+    "qid": 137,
+    "question": "geef mij het eerste woningen in buurt raalte",
+    "sparql_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:gebruiksdoel sor-con:woonfunctie. ?geb a sor:Gebouw sor:oorspronkelijkBouwjaar ?bo. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "geo:sfWithin",
+      "sor:gebruiksdoel",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar"
+    ],
+    "property_key": "huizen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": "oldest",
+      "property_key": "huizen",
+      "granularity_key": "buurt",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "raalte"
+      }
+    }
+  },
+  {
+    "qid": 138,
+    "question": "ik wil de nieuwste tankstations in wijk lutten zien met gebouwd nieuwer 377",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:tankstation. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '377') } ORDER BY DESC (?bo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "newest",
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "tankstation",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "377"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "lutten"
+      }
+    }
+  },
+  {
+    "qid": 139,
+    "question": "ik wil de kleine windmolen in wijk nieuwerkerk zien met gebouwd ouder 1",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:windmolen. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) < '1') } ORDER BY ASC (?wo) LIMIT 1",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": "smallest",
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "windmolen",
+      "amount_key": null,
+      "year_filter_options": [
+        "kleiner"
+      ],
+      "year_filter_values": [
+        "1"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "nieuwerkerk"
+      }
+    }
+  },
+  {
+    "qid": 140,
+    "question": "hoeveel fort met perceel oppervlak meer dan 76 staan in buurt ommen",
+    "sparql_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:hoofdadres ?na. ?geb a sor:Gebouw. OPTIONAL { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:fort. ?buurt sdo0:identifier \"#buurtcode\". ?buurt ^geo:sfWithin ?geb. FILTER (?po > 76) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject",
+      "sor:Perceel"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oppervlakte",
+      "sor:hoofdadres",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "buurt",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "buurt",
+      "brt_property_key": "fort",
+      "amount_key": "aantal",
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [
+        "groter"
+      ],
+      "parcel_filter_values": [
+        "76"
+      ],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  },
+  {
+    "qid": 141,
+    "question": "welke crematorium staan er in wijk waalwijk",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:crematorium. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "gebouwen",
+      "granularity_key": "wijk",
+      "brt_property_key": "crematorium",
+      "amount_key": null,
+      "year_filter_options": [],
+      "year_filter_values": [],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "waalwijk"
+      }
+    }
+  },
+  {
+    "qid": 142,
+    "question": "ik wil de watergemaal in wijk hardenberg zien bouwjaar groter 8988",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gemaal. ?wijk sdo0:identifier \"#wijkcode\". ?wijk ^geo:sfWithin/^geo:sfWithin ?geb. FILTER (str(?bo) > '8988') } LIMIT 9999",
+    "golden_classes": [
+      "sor:Gebouw",
+      "sor:Verblijfsobject"
+    ],
+    "golden_relations": [
+      "sor:hoortBij",
+      "geo:sfWithin",
+      "sdo0:identifier",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "kad:gebouwtype"
+    ],
+    "property_key": "gebouwen",
+    "granularity_key": "wijk",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": null,
+      "granularity_key": "wijk",
+      "brt_property_key": "gemaal",
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "8988"
+      ],
+      "house_filter_options": [],
+      "house_filter_values": [],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "hardenberg"
+      }
+    }
+  },
+  {
+    "qid": 143,
+    "question": "welke gebouwen met monumentale status hebben een huis oppervlak 825vierkante meter en gebouwd van na 74 in ommen",
+    "sparql_query": "SELECT DISTINCT ?geb WHERE { VALUES ?grondslag { kad-con:GG kad-con:GWA } ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo. ?geb a sor:Gebouw ^kad:gevestigdOp/kad:grondslag ?grondslag; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"#woonplaatsnaam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) > '74') FILTER (?wo = 825) } LIMIT 9999",
+    "golden_classes": [
+      "sor:Verblijfsobject",
+      "sor:Woonplaats",
+      "sor:OpenbareRuimte"
+    ],
+    "golden_relations": [
+      "sor:ligtAan",
+      "sor:ligtIn",
+      "kad:gevestigdOp",
+      "sor:maaktDeelUitVan",
+      "sor:oorspronkelijkBouwjaar",
+      "sor:oppervlakte",
+      "kad:grondslag",
+      "sor:hoofdadres",
+      "skos:prefLabel"
+    ],
+    "property_key": "monumenten",
+    "granularity_key": "woonplaats",
+    "info_dictionary": {
+      "order_key": null,
+      "property_key": "monumenten",
+      "granularity_key": "woonplaats",
+      "brt_property_key": null,
+      "amount_key": null,
+      "year_filter_options": [
+        "groter"
+      ],
+      "year_filter_values": [
+        "74"
+      ],
+      "house_filter_options": [
+        "gelijk"
+      ],
+      "house_filter_values": [
+        "825"
+      ],
+      "parcel_filter_options": [],
+      "parcel_filter_values": [],
+      "extra_return_key": null,
+      "own_address": false,
+      "address_data": {
+        "city": "ommen"
+      }
+    }
+  }
+]

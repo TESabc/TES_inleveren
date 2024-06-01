@@ -1,0 +1,743 @@
+[
+    {
+        "question": "Hoeveel gevangenissen zijn er in Vught?",
+        "sparql": "\n        SELECT DISTINCT (COUNT(DISTINCT ?geb) AS ?aantal)\n        WHERE {\n            ?vbo a sor:Verblijfsobject;\n                sor:hoofdadres ?na;\n                sor:maaktDeelUitVan ?geb.\n            ?geb sor:oorspronkelijkBouwjaar ?bo.\n\n\n            ?gebz sor:hoortBij ?vbo;\n                kad:gebouwtype kad-con:gevangenis.\n\n            ?woonplaats a sor:Woonplaats;\n                skos:prefLabel \"Vught\"@nl;\n                ^sor:ligtIn ?openbareruimte.\n            ?openbareruimte a sor:OpenbareRuimte;\n                ^sor:ligtAan ?na.\n            ?na a sor:Nummeraanduiding.\n\n        }\n        ",
+        "generalization_level": "iid",
+        "granularity": "Woonplaats",
+        "location": "Vught",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:gevangenis. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Vught\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Wat is het oudste ziekenhuis in provincie Utrecht?",
+        "sparql": "\n        SELECT DISTINCT ?geb\n        WHERE { \n            ?vbo a sor:Verblijfsobject;\n                 sor:maaktDeelUitVan ?geb.\n            ?geb a sor:Gebouw;\n                 sor:oorspronkelijkBouwjaar ?bo.\n            ?gebz sor:hoortBij ?vbo;\n                  kad:gebouwtype kad-con:ziekenhuis.\n            ?gemeente geo:sfWithin provincie:0026.\n            ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb.\n        }\n        ORDER BY ASC (?bo)\n        LIMIT 1\n\n    ",
+        "generalization_level": "iid",
+        "granularity": "Provincie",
+        "location": "0026",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:ziekenhuis. ?gemeente geo:sfWithin provincie:0026. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "geef mij het grootste perceel in gemeente deventer behorend tot een kerk",
+        "sparql": "\n        SELECT DISTINCT ?per\n        WHERE { \n            ?vbo a sor:Verblijfsobject;\n                 sor:hoofdadres ?na;\n                 sor:maaktDeelUitVan ?geb.\n            ?per a sor:Perceel;\n                 sor:hoortBij ?na;\n                 sor:oppervlakte ?po.\n            ?gebz sor:hoortBij ?vbo;\n                  kad:gebouwtype kad-con:kerk.\n            ?gemeente sdo0:identifier \"GM0150\".\n            ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb.\n        }\n        ORDER BY DESC (?po)\n        LIMIT 1  \n    ",
+        "generalization_level": "iid",
+        "granularity": "Gemeente",
+        "location": "0150",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?per WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kerk. ?gemeente sdo0:identifier \"GM0150\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?po) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Hoeveel gebouwen zijn tussen bouwjaar 1900 en 1950 in Rotterdam gebouwd?",
+        "sparql": "\n        SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal)\n        WHERE { \n            ?vbo a sor:Verblijfsobject;\n                 sor:hoofdadres ?na;\n                 sor:maaktDeelUitVan ?geb.\n            ?geb a sor:Gebouw;\n                 sor:oorspronkelijkBouwjaar ?bo.\n            ?woonplaats a sor:Woonplaats;\n                        skos:prefLabel \"Rotterdam\"@nl;\n                        ^sor:ligtIn ?openbareruimte.\n            ?openbareruimte a sor:OpenbareRuimte;\n                             ^sor:ligtAan ?na.\n            FILTER (str(?bo) > '1900')\n            FILTER (str(?bo) < '1950')\n        }\n        LIMIT 9999 \n    ",
+        "generalization_level": "iid",
+        "granularity": "Woonplaats",
+        "location": "Rotterdam",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Rotterdam\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. FILTER (str(?bo) > '1900') FILTER (str(?bo) < '1950') } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "hoeveel kerken staan in gemeente Apeldoorn?",
+        "sparql": "\n        SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal)\n        WHERE { \n            ?vbo a sor:Verblijfsobject;\n                 sor:maaktDeelUitVan ?geb.\n            ?geb a sor:Gebouw.\n            ?gebz sor:hoortBij ?vbo;\n                  kad:gebouwtype kad-con:kerk.\n            ?gemeente sdo0:identifier \"GM0200\".\n            ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb.\n        }\n        LIMIT 9999\n\n    ",
+        "generalization_level": "iid",
+        "granularity": "Gemeente",
+        "location": "0200",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT (COUNT(DISTINCT ?geb) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:kerk. ?gemeente sdo0:identifier \"GM0200\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Wat is het oudste politiebureau in provincie Gelderland?",
+        "sparql": "\n        SELECT DISTINCT ?geb \n        WHERE { \n            ?vbo a sor:Verblijfsobject; \n                 sor:maaktDeelUitVan ?geb. \n            ?geb a sor:Gebouw; \n                 sor:oorspronkelijkBouwjaar ?bo. \n            ?gebz sor:hoortBij ?vbo; \n                  kad:gebouwtype kad-con:politiebureau. \n            ?gemeente geo:sfWithin provincie:0025. \n            ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. \n        } \n        ORDER BY ASC(?bo) \n        LIMIT 1\n    ",
+        "generalization_level": "iid",
+        "granularity": "Provincie",
+        "location": "0025",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:politiebureau. ?gemeente geo:sfWithin provincie:0025. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "ik wil alle percelen en de geometrie daarvan in lettele",
+        "sparql": "\n        SELECT DISTINCT ?per ?geo_wgs84 \n        WHERE { \n            ?per a sor:Perceel; \n                 sor:hoortBij ?na; \n                 geo:hasGeometry/geo:asWKT ?geo_wgs84. \n            ?woonplaats a sor:Woonplaats; \n                        skos:prefLabel \"Lettele\"@nl; \n                        ^sor:ligtIn ?openbareruimte. \n            ?openbareruimte a sor:OpenbareRuimte; \n                            ^sor:ligtAan ?na. \n        } \n        LIMIT 9999\n\n    ",
+        "generalization_level": "iid",
+        "granularity": "Woonplaats",
+        "location": "Lettele",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?per ?geo_wgs84 WHERE { ?per a sor:Perceel; sor:hoortBij ?na; geo:hasGeometry/geo:asWKT ?geo_wgs84. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Lettele\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij het oudste zwembad in nederland",
+        "sparql": "\n        SELECT DISTINCT ?geb \n        WHERE { \n            ?vbo a sor:Verblijfsobject; \n                 sor:maaktDeelUitVan ?geb. \n            ?geb a sor:Gebouw; \n                 sor:oorspronkelijkBouwjaar ?bo. \n            ?gebz sor:hoortBij ?vbo; \n                  kad:gebouwtype kad-con:zwembad. \n        } \n        ORDER BY ASC (?bo) \n        LIMIT 1\n\n        ",
+        "generalization_level": "iid",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:zwembad. } ORDER BY ASC (?bo) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij de oudste school in provincie drenthe",
+        "sparql": "\n        SELECT DISTINCT ?geb \n        WHERE { \n            ?vbo a sor:Verblijfsobject; \n                 sor:maaktDeelUitVan ?geb. \n            ?geb a sor:Gebouw; \n                 sor:oorspronkelijkBouwjaar ?bo. \n            ?gebz sor:hoortBij ?vbo; \n                  kad:gebouwtype kad-con:school. \n            ?gemeente geo:sfWithin provincie:0022. \n            ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. \n        } \n        ORDER BY ASC (?bo) \n        LIMIT 1\n\n\n        ",
+        "generalization_level": "iid",
+        "granularity": "Provincie",
+        "location": "0022",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:school. ?gemeente geo:sfWithin provincie:0022. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY ASC (?bo) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij de nieuwste brandweerkazerne in gemeente eindhoven",
+        "sparql": "\n        SELECT DISTINCT ?geb \n        WHERE { \n            ?vbo a sor:Verblijfsobject; \n                 sor:maaktDeelUitVan ?geb. \n            ?geb a sor:Gebouw; \n                 sor:oorspronkelijkBouwjaar ?bo. \n            ?gebz sor:hoortBij ?vbo; \n                  kad:gebouwtype kad-con:brandweerkazerne. \n            ?gemeente sdo0:identifier \"GM0772\". \n            ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. \n        } \n        ORDER BY DESC (?bo) \n        LIMIT 1\n\n\n\n        ",
+        "generalization_level": "iid",
+        "granularity": "Gemeente",
+        "location": "0772",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?geb WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?gebz sor:hoortBij ?vbo; kad:gebouwtype kad-con:brandweerkazerne. ?gemeente sdo0:identifier \"GM0772\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } ORDER BY DESC (?bo) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Hoeveel openbare ruimtes zijn er in Apeldoorn?",
+        "sparql": "\n        SELECT DISTINCT (COUNT(DISTINCT ?openbareruimte) as ?aantal)\n        WHERE {\n          ?openbareruimte a sor:OpenbareRuimte. \n\n          ?woonplaats a sor:Woonplaats; \n                      skos:prefLabel \"Apeldoorn\"@nl;\n                      ^sor:ligtIn ?openbareruimte.  \n        }\n        LIMIT 9999\n\n    ",
+        "generalization_level": "compositional",
+        "granularity": "Woonplaats",
+        "location": "Apeldoorn",
+        "novel_functions": [],
+        "generated_query": "SELECT (COUNT(DISTINCT ?openbareruimte) AS ?aantal) WHERE { ?openbareruimte a sor:OpenbareRuimte. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Apeldoorn\"@nl; ^sor:ligtIn ?openbareruimte. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Hoeveel gemeentes zijn er in provincie Zeeland?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?gemeente) as ?aantal)\n        WHERE {    \n            ?gemeente geo:sfWithin provincie:0029;\n                      a sor:Gemeente.  \n        }\n        LIMIT 9999\n\n\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Provincie",
+        "location": "Zeeland",
+        "novel_functions": [],
+        "generated_query": "SELECT (COUNT(DISTINCT ?gemeente) as ?aantal) WHERE { ?gemeente geo:sfWithin provincie:0029. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij het perceel welke het kleinste perceel oppervlakte heeft in Nederland. Geef mij alleen het perceel.",
+        "sparql": "\n        SELECT ?perceel WHERE {\n            ?perceel a sor:Perceel ;\n                sor:oppervlakte ?oppervlakte .\n        } ORDER BY ASC(?oppervlakte) LIMIT 1\n\n\n    ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?per WHERE { ?per a sor:Perceel; sor:oppervlakte ?po. } ORDER BY ASC (?po) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Ik wil het kleinste perceel in Nederland en de bijbehorende perceeloppervlakte",
+        "sparql": "\n        SELECT DISTINCT ?per ?po\n        WHERE {\n            ?per a sor:Perceel;\n                 sor:oppervlakte ?po.\n\n        }\n        ORDER BY ASC (?po)\n        LIMIT 1\n\n\n\n    ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?per ?po WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. } ORDER BY ASC(?po) LIMIT 1",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij alle verblijfsobjecten met celfunctie in Almere",
+        "sparql": "\n        SELECT DISTINCT ?verblijfsobject \n        WHERE { \n            ?verblijfsobject a sor:Verblijfsobject ;\n            sor:gebruiksdoel sor-con:celfunctie ;\n            sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats ;\n            skos:prefLabel \"Almere\"@nl .\n        }\n\n\n\n\n    ",
+        "generalization_level": "compositional",
+        "granularity": "Woonplaats",
+        "location": "Almere",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?vbo WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:gebruiksdoelWonen ?gdw. ?gdw a sor:GebruiksdoelWonen; skos:prefLabel \"celfunctie\"@nl. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Almere\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "welke gebruiksdoelen kan een verblijfsobject hebben?",
+        "sparql": "\n        SELECT DISTINCT ?gebruiksdoel WHERE {\n          ?vbo a sor:Verblijfsobject ;\n               sor:gebruiksdoel ?gebruiksdoel .\n        }\n\n\n\n\n\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?gebruiksdoel WHERE { ?vbo a sor:Verblijfsobject; sor:heeftGebruiksdoel ?gebruiksdoel. }",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel gebouwzones zijn er van het type kerk?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?gebouwzone) AS ?count) WHERE {\n            ?gebouwzone a sor:Gebouwzone ;\n                kad:gebouwtype kad-con:kerk .\n        }\n\n\n\n\n\n\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT (COUNT(DISTINCT ?gebz) AS ?aantal) WHERE { ?gebz a sor:Gebouwzone; kad:gebouwtype kad-con:kerk. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Hoeveel verblijfsobjecten vallen onder een gebouwzone met gebouwtype zwembad?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?vbo) AS ?count) WHERE {\n          ?gebouwzone a sor:Gebouwzone ;\n                      kad:gebouwtype kad-con:zwembad ;\n                      sor:hoortBij ?vbo .\n          ?vbo a sor:Verblijfsobject .\n        }\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT (COUNT(DISTINCT ?vbo) AS ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:gebouwtype ?gebType. ?gebType rdfs:label \"zwembad\"@nl. }",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel verblijfsobjecten vallen onder een zwembad?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?vbo) AS ?count) WHERE {\n          ?vbo a sor:Verblijfsobject .\n          ?gebz a sor:Gebouwzone ;\n                sor:hoortBij ?vbo ;\n                kad:gebouwtype kad-con:zwembad .\n        }\n\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT (COUNT(DISTINCT ?vbo) as ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; kad:gebouwtype kad-con:zwembad. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat voor gebouwtypes kan een gebouwzone hebben?",
+        "sparql": "\n        SELECT DISTINCT ?gebouwtype WHERE {\n          ?gebouwzone a sor:Gebouwzone ;\n                      kad:gebouwtype ?gebouwtype .\n        }\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT DISTINCT ?gebouwType WHERE { ?gebouwZone a sor:GebouwZone; sor:heeftGebouwType ?gebouwType. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Beschouw alle verblijfsobjecten en perceel combinaties. Hoeveel verblijfsobjecten hebben een kleinere oppervlakte vergeleken met het perceel?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?vbo) AS ?count) WHERE {\n            ?vbo a sor:Verblijfsobject ;\n                 sor:oppervlakte ?vbo_opp ;\n                 sor:hoofdadres ?na .\n            ?per a sor:Perceel ;\n                 sor:hoortBij ?na ;\n                 sor:oppervlakte ?per_opp .\n            FILTER (?vbo_opp < ?per_opp)\n        }\n\n        ",
+        "generalization_level": "compositional",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "generated_query": "SELECT (COUNT(DISTINCT ?vbo) AS ?count) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:oppervlakte ?wo. ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. FILTER (?wo < ?po) }",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Welke woonplaats heeft de meeste ligplaatsen? Geef mij de woonplaats en het aantal ligplaatsen dat daar inzitten.",
+        "sparql": "\n        SELECT ?woonplaats (COUNT(DISTINCT ?ligplaats) AS ?aantalLigplaatsen) WHERE {\n            ?ligplaats a kad:Ligplaats ;\n                sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats .\n        } GROUP BY ?woonplaats ORDER BY DESC(?aantalLigplaatsen) LIMIT 1\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "MULTIPLE VARIABLES",
+            "GROUP BY"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 3,
+        "generated_query": "SELECT ?woonplaats (COUNT(DISTINCT ?ligplaats) AS ?aantal) WHERE {\n  ?ligplaats a sor:Ligplaats.\n  ?ligplaats sor:ligtIn ?woonplaats.\n} GROUP BY ?woonplaats ORDER BY DESC(?aantal) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij alle woonplaatsen met meer dan 100 ligplaatsen daarin. Geef me de woonplaatsen en het aantal ligplaatsen.",
+        "sparql": "\n        SELECT DISTINCT ?woonplaats (COUNT(DISTINCT ?ligplaats) as ?ligplaatsAantal)\n\n        WHERE {\n          ?ligplaats a kad:Ligplaats;\n               sor:hoofdadres ?na.\n\n          ?woonplaats a sor:Woonplaats;\n                      ^sor:ligtIn ?openbareruimte.\n          ?openbareruimte a sor:OpenbareRuimte;\n                           ^sor:ligtAan ?na.\n        }\n        GROUP BY ?woonplaats\n        HAVING (COUNT(DISTINCT ?ligplaats) > 100)\n\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "MULTIPLE VARIABLES",
+            "GROUP BY",
+            "HAVING"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 3,
+        "generated_query": "SELECT ?woonplaats (COUNT(DISTINCT ?ligplaats) AS ?aantalLigplaatsen) WHERE {\n  ?ligplaats a sor:Ligplaats; \n             sor:ligtInWoonplaats ?woonplaats.\n} \nGROUP BY ?woonplaats\nHAVING (COUNT(DISTINCT ?ligplaats) > 100)",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel standplaatsen zijn er in Kampen?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?standplaats) AS ?aantalStandplaatsen) WHERE {\n            ?standplaats a kad:Standplaats ;\n                sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel \"Kampen\"@nl .\n        }\n\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Kampen",
+        "novel_functions": [],
+        "new_schema_item": true,
+        "number_of_relations": 4,
+        "generated_query": "SELECT (COUNT(DISTINCT ?standplaats) AS ?aantal) WHERE {\n  ?standplaats a sor:Standplaats.\n  ?standplaats sor:ligtIn ?woonplaats.\n  ?woonplaats a sor:Woonplaats; skos:prefLabel \"Kampen\"@nl.\n}",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij alle sor woonplaatsen die meer dan 50 kad standplaatsen bevatten. Geef mij de woonplaatsen en het aantal standplaatsen.",
+        "sparql": "\n        SELECT ?woonplaats (COUNT(DISTINCT ?standplaats) AS ?aantalStandplaatsen)\n        WHERE {\n            ?standplaats a kad:Standplaats ;\n                sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats .\n        }\n        GROUP BY ?woonplaats\n        HAVING (COUNT(DISTINCT ?standplaats) > 50)\n\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY",
+            "HAVING",
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 3,
+        "generated_query": "SELECT ?woonplaats (COUNT(DISTINCT ?standplaats) AS ?aantalStandplaatsen) WHERE {\n  ?standplaats a kad:Standplaats ;\n               sor:ligtIn ?woonplaats .\n  ?woonplaats a sor:Woonplaats .\n} GROUP BY ?woonplaats HAVING (COUNT(DISTINCT ?standplaats) > 50)",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij het perceel, perceelnummer, de sectie, en de oppervlakte van het perceel met de grootste oppervlakte in Nederland.",
+        "sparql": "\n        SELECT DISTINCT ?per ?perceelOppervlakte ?perceelnummer ?sectie\n        WHERE {\n            ?per a sor:Perceel;\n                 sor:oppervlakte ?perceelOppervlakte;\n                 sor:perceelnummer ?perceelnummer;\n                 sor:sectie ?sectie.\n\n\n        }\n        ORDER BY DESC (?po)\n        LIMIT 1\n\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 3,
+        "generated_query": "SELECT DISTINCT ?per ?perNum ?sec ?po WHERE { ?per a sor:Perceel; sor:perceelnummer ?perNum; sor:sectie ?sec; sor:oppervlakte ?po. } ORDER BY DESC(?po) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij de 3 gebouwzones en de hoogtes daarvan, welke de hoogste hoogte hebben.",
+        "sparql": "\n        SELECT ?gebouwzone ?hoogte\n        WHERE {\n          ?gebouwzone a sor:Gebouwzone ;\n                      kad:hoogte ?hoogte .\n        }\n        ORDER BY DESC(?hoogte)\n        LIMIT 3\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 1,
+        "generated_query": "SELECT ?gebz ?hoogte WHERE { ?gebz a sor:Gebouwzone; sor:hoogte ?hoogte. } ORDER BY DESC(?hoogte) LIMIT 3",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij alle kad overheidsorganisaties en hun preflabel.",
+        "sparql": "\n        SELECT DISTINCT ?org ?label\n        WHERE {\n            ?org a kad:Overheidsorganisatie;\n                skos:prefLabel ?label.\n        }\n\n\n\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 1,
+        "generated_query": "SELECT DISTINCT ?org ?label WHERE { ?org a kad:Overheidsorganisatie; skos:prefLabel ?label. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij het gebouw met de meeste verblijfsobjecten in Amsterdam? Geef mij alleen het gebouw.",
+        "sparql": "\n        SELECT DISTINCT ?geb\n        WHERE {\n          ?vbo a sor:Verblijfsobject;\n               sor:hoofdadres ?na;\n               sor:maaktDeelUitVan ?geb.\n\n          ?geb a sor:Gebouw.\n\n          ?woonplaats a sor:Woonplaats;\n                      skos:prefLabel \"Amsterdam\"@nl;\n                      ^sor:ligtIn ?openbareruimte.\n          ?openbareruimte a sor:OpenbareRuimte;\n                           ^sor:ligtAan ?na.\n        }\n        GROUP BY ?geb\n        ORDER BY DESC(COUNT(?vbo))\n        LIMIT 1\n\n\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Amsterdam",
+        "novel_functions": [
+            "MULTIPLE VARIABLES",
+            "GROUP BY"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 5,
+        "generated_query": "SELECT ?gebouw WHERE {\n  ?gebouw a sor:Gebouw; sor:heeftOnderdeel ?vbo.\n  ?vbo a sor:Verblijfsobject.\n  ?woonplaats a sor:Woonplaats; skos:prefLabel \"Amsterdam\"@nl; ^sor:ligtIn ?openbareruimte.\n  ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na.\n  ?na a sor:Nummeraanduiding; sor:hoofdadres ?vbo.\n} \nGROUP BY ?gebouw\nHAVING (COUNT(DISTINCT ?vbo) = MAX(COUNT(DISTINCT ?vbo)))",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij alle openbare ruimtes die meer dan 200 verblijfsobjecten bevatten in Dordrecht. Geef mij de openbare ruimtes en de preflabels.",
+        "sparql": "\n        SELECT ?openbareruimte ?prefLabel\n        WHERE {\n          ?woonplaats a sor:Woonplaats ;\n                      skos:prefLabel \"Dordrecht\"@nl .\n          ?openbareruimte a sor:OpenbareRuimte ;\n                          sor:ligtIn ?woonplaats ;\n                          skos:prefLabel ?prefLabel .\n          {\n            SELECT ?openbareruimte (COUNT(DISTINCT ?vbo) AS ?count)\n            WHERE {\n              ?vbo a sor:Verblijfsobject ;\n                   sor:hoofdadres/sor:ligtAan ?openbareruimte .\n            }\n            GROUP BY ?openbareruimte\n            HAVING (COUNT(DISTINCT ?vbo) > 200)\n          }\n        }\n\n\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Dordrecht",
+        "novel_functions": [
+            "MULTIPLE VARIABLES",
+            "GROUP BY",
+            "HAVING",
+            "SUBQUERY"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 5,
+        "generated_query": "SELECT ?openbareruimte ?prefLabel WHERE {\n  ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel ?prefLabel.\n  ?woonplaats a sor:Woonplaats; skos:prefLabel \"Dordrecht\"@nl; ^sor:ligtIn ?openbareruimte.\n  ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb.\n  ?geb a sor:Gebouw; ^sor:ligtAan ?na.\n} GROUP BY ?openbareruimte ?prefLabel HAVING (COUNT(DISTINCT ?vbo) > 200) LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde bouwjaar van gebouwen in Maastricht?",
+        "sparql": "\n        SELECT (AVG(YEAR(?bouwjaar)) as ?gemBouwjaar) WHERE {\n            ?vbo a sor:Verblijfsobject ;\n                sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats ;\n                sor:maaktDeelUitVan ?gebouw .\n            ?gebouw a sor:Gebouw ;\n                sor:oorspronkelijkBouwjaar ?bouwjaar .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel \"Maastricht\"@nl .\n        }\n\n\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Maastricht",
+        "novel_functions": [
+            "AVERAGE"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 6,
+        "generated_query": "SELECT (AVG(?bo) as ?gemiddeldeBouwjaar) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Maastricht\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde aantal sor gemeentes dat zich bevinden in een sor provincie?",
+        "sparql": "\n        SELECT (AVG(?count) as ?average) WHERE {\n          SELECT (COUNT(DISTINCT ?gemeente) as ?count) WHERE {\n            ?gemeente a sor:Gemeente ;\n              geo:sfWithin ?provincie .\n            ?provincie a sor:Provincie .\n          } GROUP BY ?provincie\n        }\n\n\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "AVERAGE",
+            "GROUP BY",
+            "SUBQUERY"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 1,
+        "generated_query": "SELECT (AVG(?count) as ?average) WHERE {\n  SELECT (COUNT(DISTINCT ?gemeente) as ?count) WHERE {\n    ?gemeente a sor:Gemeente;\n    sor:ligtIn ?provincie.\n    ?provincie a sor:Provincie.\n  } GROUP BY ?provincie\n}",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij de sor provincie met de meeste gemeentes. Geef mij alleen de provincie.",
+        "sparql": "\n        SELECT ?provincie\n        WHERE {    \n          ?provincie ^geo:sfWithin ?gemeente;\n                     a sor:Provincie.\n          ?gemeente a sor:Gemeente.  \n        }\n        GROUP BY ?provincie\n        ORDER BY DESC(count(?gemeente))\n        LIMIT 1\n\n\n\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 1,
+        "generated_query": "SELECT ?provincie WHERE {\n  ?provincie a sor:Provincie .\n  ?gemeente a sor:Gemeente ;\n             sor:ligtIn ?provincie .\n} GROUP BY ?provincie\n  HAVING (COUNT(DISTINCT ?gemeente) = \n    (SELECT (MAX(COUNT(DISTINCT ?gemeente))) WHERE {\n      ?provincie a sor:Provincie .\n      ?gemeente a sor:Gemeente ;\n                 sor:ligtIn ?provincie .\n    } GROUP BY ?provincie\n    )\n  )",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde aantal verblijfsobjecten dat zich in een gebouw bevinden in zwolle?",
+        "sparql": "\n        SELECT (AVG(?count) as ?average) WHERE {\n          SELECT (COUNT(DISTINCT ?vbo) as ?count) WHERE {\n            ?vbo a sor:Verblijfsobject ;\n                 sor:maaktDeelUitVan ?geb .\n            ?geb a sor:Gebouw .\n            ?vbo sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats ;\n                        skos:prefLabel \"Zwolle\"@nl .\n          } GROUP BY ?geb\n        }\n\n\n\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Zwolle",
+        "novel_functions": [
+            "GROUP BY",
+            "SUBQUERY",
+            "AVERAGE"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 5,
+        "generated_query": "SELECT (AVG(?count) as ?average) WHERE { SELECT (COUNT(DISTINCT ?vbo) as ?count) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Zwolle\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. ?na a sor:Nummeraanduiding; sor:hoofdadres ?vbo. } GROUP BY ?geb }",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij de wbk gemeente met het minste aantal sor gebouwen en geef mij ook het aantal gebouwen dat hier bij hoort.",
+        "sparql": "\n        SELECT ?gemeente (COUNT(DISTINCT ?gebouw) AS ?aantalGebouwen)\n        WHERE {\n            ?gebouw a sor:Gebouw ;\n                geo:sfWithin/geo:sfWithin/geo:sfWithin ?gemeente .\n            ?gemeente a wbk:Gemeente.\n        }\n        GROUP BY ?gemeente\n        ORDER BY ?aantalGebouwen\n        LIMIT 1\n\n\n\n\n",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY",
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 3,
+        "generated_query": "SELECT ?wbk (COUNT(DISTINCT ?geb) AS ?count) WHERE { ?wbk a sor:WijkBuurtKern; sor:bevat ?geb. ?geb a sor:Gebouw. } GROUP BY ?wbk ORDER BY ASC(COUNT(DISTINCT ?geb)) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij de provincie waarvan de gebouwen die daarin liggen gemiddeld het oudste bouwjaar hebben. Geef mij de provincie en het gemiddelde bouwjaar van gebouwen daarin.",
+        "sparql": "\nSELECT ?provincie (AVG(YEAR(?bo)) AS ?avg_bouwjaar)\nWHERE {\n  ?building a sor:Gebouw;\n            sor:oorspronkelijkBouwjaar ?bo;\n            geo:sfWithin/geo:sfWithin/geo:sfWithin/^owl:sameAs/geo:sfWithin ?provincie.\n}\nGROUP BY ?provincie\nORDER BY ASC(?avg_bouwjaar)\nLIMIT 1\n\n\n\n\n\n\n",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY",
+            "MULTIPLE VARIABLES",
+            "AVERAGE"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 6,
+        "generated_query": "SELECT ?provincie (AVG(?bouwjaar) as ?gemiddeldeBouwjaar) WHERE {\n  ?gebouw a sor:Gebouw ;\n           sor:oorspronkelijkBouwjaar ?bouwjaar ;\n           sor:ligtIn ?provincie .\n} GROUP BY ?provincie ORDER BY ASC(?gemiddeldeBouwjaar) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is de gemiddelde oppervlakte van percelen in Dieren?",
+        "sparql": "\n        SELECT (AVG(?oppervlakte) as ?gemiddeldeOppervlakte) WHERE {\n            ?perceel a sor:Perceel ;\n                sor:hoortBij/sor:ligtAan/sor:ligtIn ?woonplaats ;\n                sor:oppervlakte ?oppervlakte .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel \"Dieren\"@nl .\n        }\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Dieren",
+        "novel_functions": [
+            "AVERAGE"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 5,
+        "generated_query": "SELECT (AVG(?po) as ?gemiddelde) WHERE { ?per a sor:Perceel; sor:hoortBij ?na; sor:oppervlakte ?po. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Dieren\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Welke sor woonplaats bevat de sor verblijfsobjecten met gemiddeld de grootste oppervlakte? Selecteer de woonplaats en de gemiddelde oppervlakte",
+        "sparql": "\n        SELECT ?woonplaats (AVG(?oppervlakte) as ?gemiddeldeOppervlakte) WHERE {\n            ?vbo a sor:Verblijfsobject ;\n                sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats ;\n                sor:oppervlakte ?oppervlakte .\n            ?woonplaats a sor:Woonplaats .\n        } \n        GROUP BY ?woonplaats\n        ORDER BY DESC(?gemiddeldeOppervlakte)\n        LIMIT 1\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "AVERAGE",
+            "GROUP BY"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 5,
+        "generated_query": "SELECT ?wp (AVG(?wo) as ?avgWo) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb; sor:oppervlakte ?wo; sor:hoofdadres ?na. ?na sor:ligtIn ?wp. } GROUP BY ?wp ORDER BY DESC(?avgWo) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde bouwjaar van gebouwen?",
+        "sparql": "\n        SELECT (AVG(YEAR(?bo)) as ?gemiddeldBouwjaarGebouwen)\n        WHERE {\n          ?geb a sor:Gebouw;\n               sor:oorspronkelijkBouwjaar ?bo.\n        }\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "AVERAGE"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 1,
+        "generated_query": "SELECT (AVG(?bo) as ?gemiddeldeBouwjaar) WHERE { ?geb a sor:Gebouw; sor:oorspronkelijkBouwjaar ?bo. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel gebouwen zijn er waarvoor een bouwvergunning is verleend?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?gebouw) AS ?aantal) \n        WHERE {\n            ?gebouw a sor:Gebouw ;\n                sor:status kad-con:bouwvergunningVerleend .\n        }\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "new_schema_item": true,
+        "number_of_relations": 1,
+        "generated_query": "SELECT (COUNT(DISTINCT ?geb) AS ?aantal) WHERE { ?geb a sor:Gebouw; sor:heeftBouwvergunning ?verg. ?verg a sor:Bouwvergunning. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel gebouwen zijn er in gemeente Groningen waarvoor een bouwvergunning is verleend?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?gebouw) AS ?aantalGebouwen)\n        WHERE {\n            ?gebouw a sor:Gebouw ;\n                sor:status kad-con:bouwvergunningVerleend ;\n                geo:sfWithin/geo:sfWithin/geo:sfWithin ?gemeente .\n            ?gemeente a wbk:Gemeente ;\n                sdo0:identifier \"GM0014\" .\n        }\n",
+        "generalization_level": "zeroshot",
+        "granularity": "Gemeente",
+        "location": "0014",
+        "novel_functions": [],
+        "new_schema_item": true,
+        "number_of_relations": 5,
+        "generated_query": "SELECT (COUNT(DISTINCT ?gebouw) AS ?aantal) WHERE { ?gebouw a sor:Gebouw; sor:heeftBouwvergunning ?vergunning. ?gemeente sdo0:identifier \"GM0014\". ?gemeente ^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?gebouw. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel gebouwen zijn er in Tilburg waarvoor een bouwvergunning is verleend?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?gebouw) AS ?aantal)\n        WHERE {\n            ?gebouw a sor:Gebouw ;\n                    sor:status kad-con:bouwvergunningVerleend ;\n                    ^sor:maaktDeelUitVan/sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats ;\n                        skos:prefLabel \"Tilburg\"@nl .\n        }\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Tilburg",
+        "novel_functions": [],
+        "new_schema_item": true,
+        "number_of_relations": 5,
+        "generated_query": "SELECT (COUNT(DISTINCT ?geb) AS ?aantal) WHERE { ?vbo a sor:Verblijfsobject; sor:hoofdadres ?na; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw; ^sor:heeftBouwvergunning ?bv. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Tilburg\"@nl; ^sor:ligtIn ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; ^sor:ligtAan ?na. } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Hoeveel sor nummeraanduidingen hebben een huisletter in Breda?",
+        "sparql": "\n        SELECT (COUNT(DISTINCT ?nummeraanduiding) AS ?count)\n        WHERE {\n            ?nummeraanduiding a sor:Nummeraanduiding ;\n                sor:huisletter ?huisletter ;\n                sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel \"Breda\"@nl .\n        }\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Breda",
+        "novel_functions": [],
+        "new_schema_item": true,
+        "number_of_relations": 4,
+        "generated_query": "SELECT (COUNT(DISTINCT ?na) AS ?count) WHERE { ?na a sor:Nummeraanduiding; sor:huisletter ?hl; sor:ligtAan ?openbareruimte. ?openbareruimte a sor:OpenbareRuimte; sor:ligtIn ?woonplaats. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Breda\"@nl. }",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij alle sor openbare ruimtes met preflabel beginnend met een a, geef mij de openbare ruimtes en hun preflabel.",
+        "sparql": "\n        SELECT ?openbareRuimte ?prefLabel\n        WHERE {\n            ?openbareRuimte a sor:OpenbareRuimte ;\n                skos:prefLabel ?prefLabel .\n            FILTER (STRSTARTS(LCASE(?prefLabel), \"a\"))\n        }\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "STRING"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 1,
+        "generated_query": "SELECT DISTINCT ?openbare_ruimte ?preflabel WHERE { ?openbare_ruimte a sor:OpenbareRuimte; sor:prefLabel ?preflabel. FILTER(STRSTARTS(LCASE(?preflabel), \"a\")) } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij alle sor openbare ruimtes met preflabel met het woord koningin erin. Geef me ook de preflabel",
+        "sparql": "\n        SELECT DISTINCT ?openbareRuimte ?prefLabel\n        WHERE {\n            ?openbareRuimte a sor:OpenbareRuimte ;\n                skos:prefLabel ?prefLabel .\n            FILTER(CONTAINS(LCASE(STR(?prefLabel)), \"koningin\"))\n        }\n\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "STRING"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 1,
+        "generated_query": "SELECT DISTINCT ?openbare_ruimte ?preflabel WHERE { ?openbare_ruimte a sor:OpenbareRuimte; skos:prefLabel ?preflabel. FILTER(CONTAINS(LCASE(STR(?preflabel)), \"koningin\")) } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Wat is de laagste en hoogste kad:bronnauwkeurigheid van sor:registratiegegevens?",
+        "sparql": "\n        SELECT (MIN(?nauwkeurigheid) AS ?laagsteNauwkeurigheid) (MAX(?nauwkeurigheid) AS ?hoogsteNauwkeurigheid)\n        WHERE {\n            ?reg a sor:Registratiegegevens ;\n                 kad:bronnauwkeurigheid ?nauwkeurigheid .\n        }\n\n\n\n",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [],
+        "new_schema_item": true,
+        "number_of_relations": 1,
+        "generated_query": "SELECT (MIN(?ba) AS ?min_ba) (MAX(?ba) AS ?max_ba) WHERE { ?reg a sor:Registratiegegeven; kad:bronnauwkeurigheid ?ba. }",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is de meest voorkomende kad:bronbeschrijving onder de sor:registratiegegevens die kad:bronnauwkeurigheid gelijk hebben aan 0.1? Geef mij alleen de bronbeschrijving.",
+        "sparql": "\n        SELECT ?bronbeschrijving WHERE {\n          ?reg a sor:Registratiegegevens ;\n               kad:bronbeschrijving ?bronbeschrijving ;\n               kad:bronnauwkeurigheid ?nauwkeurigheid .\n          FILTER (?nauwkeurigheid = 0.1)\n        }\n        GROUP BY ?bronbeschrijving\n        ORDER BY DESC(COUNT(DISTINCT ?reg))\n        LIMIT 1\n\n\n\n\n",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 2,
+        "generated_query": "SELECT ?bronbeschrijving WHERE {\n  ?reg a sor:Registratiegegeven;\n       kad:bronbeschrijving ?bronbeschrijving;\n       kad:bronnauwkeurigheid ?nauwkeurigheid.\n  FILTER (str(?nauwkeurigheid) = '0.1')\n}\nGROUP BY ?bronbeschrijving\nORDER BY DESC(COUNT(DISTINCT ?reg))\nLIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is de meest voorkomende kad:bronbeschrijving onder de sor:registratiegegevens die kad:bronnauwkeurigheid gelijk hebben aan 20? Geef mij de bronbeschrijving en hoe vaak deze voorkomt.",
+        "sparql": "\n        SELECT ?bronbeschrijving (COUNT(DISTINCT ?registratie) AS ?count) WHERE {\n            ?registratie a sor:Registratiegegevens ;\n                kad:bronbeschrijving ?bronbeschrijving ;\n                kad:bronnauwkeurigheid 20 .\n        } GROUP BY ?bronbeschrijving ORDER BY DESC(?count) LIMIT 1\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 2,
+        "generated_query": "SELECT ?bronbeschrijving (COUNT(DISTINCT ?registratie) AS ?count) WHERE { ?registratie a sor:Registratiegegeven; kad:bronbeschrijving ?bronbeschrijving; kad:bronnauwkeurigheid ?nauwkeurigheid. FILTER (str(?nauwkeurigheid) = '20') } GROUP BY ?bronbeschrijving ORDER BY DESC(?count) LIMIT 1",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Welke sor openbare ruimte bevatten meer dan 600 kad standplaatsen? Geef mij de preflabel van de openbare ruimte, het aantal standplaatsen, en de sor woonplaats waar de openbare ruimte is gelegen.",
+        "sparql": "\n        SELECT ?openbareRuimteLabel (COUNT(DISTINCT ?standplaats) AS ?aantalStandplaatsen) ?woonplaatsLabel\n        WHERE {\n            ?standplaats a kad:Standplaats ;\n                sor:hoofdadres/sor:ligtAan ?openbareRuimte .\n            ?openbareRuimte a sor:OpenbareRuimte ;\n                skos:prefLabel ?openbareRuimteLabel ;\n                sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel ?woonplaatsLabel .\n        }\n        GROUP BY ?openbareRuimteLabel ?woonplaatsLabel\n        HAVING (COUNT(DISTINCT ?standplaats) > 600)\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY",
+            "HAVING",
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 5,
+        "generated_query": "SELECT ?openbare_ruimte_label (COUNT(DISTINCT ?standplaats) as ?aantal_standplaatsen) ?woonplaats WHERE {\n  ?standplaats a kad:Standplaats ;\n               sor:hoofdadres ?adres .\n  ?adres sor:ligtAan ?openbare_ruimte .\n  ?openbare_ruimte a sor:OpenbareRuimte ;\n                   skos:prefLabel ?openbare_ruimte_label ;\n                   sor:ligtIn ?woonplaats .\n} GROUP BY ?openbare_ruimte_label ?woonplaats HAVING (COUNT(DISTINCT ?standplaats) > 600)",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Welke sor openbare ruimtes, gelegen in Amsterdam, bevatten meer dan 100 kad ligtplaatsen? Geef mij de preflabel van de openbare ruimte, het aantal ligplaatsen.",
+        "sparql": "\n        SELECT ?openbareRuimteLabel (COUNT(DISTINCT ?ligplaats) AS ?aantalLigplaatsen)\n        WHERE {\n            ?woonplaats a sor:Woonplaats ;\n                        skos:prefLabel \"Amsterdam\"@nl ;\n                        ^sor:ligtIn ?openbareRuimte .\n            ?openbareRuimte a sor:OpenbareRuimte ;\n                            skos:prefLabel ?openbareRuimteLabel ;\n                            ^sor:ligtAan/^sor:hoofdadres|^sor:nevenadres ?ligplaats .\n            ?ligplaats a kad:Ligplaats .\n        }\n        GROUP BY ?openbareRuimteLabel\n        HAVING (COUNT(DISTINCT ?ligplaats) > 100)\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Amsterdam",
+        "novel_functions": [
+            "GROUP BY",
+            "HAVING",
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 6,
+        "generated_query": "SELECT ?openbareruimteLabel (COUNT(DISTINCT ?ligplaats) AS ?aantalLigplaatsen) WHERE {\n  ?ligplaats a sor:Ligplaats ;\n             sor:ligtAan ?openbareruimte .\n  ?openbareruimte a sor:OpenbareRuimte ;\n                  skos:prefLabel ?openbareruimteLabel ;\n                  ^sor:ligtIn ?woonplaats .\n  ?woonplaats a sor:Woonplaats ;\n              skos:prefLabel \"Amsterdam\"@nl .\n} GROUP BY ?openbareruimteLabel\nHAVING (COUNT(DISTINCT ?ligplaats) > 100)",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde aantal kad ligplaatsen dat zich bevinden in een sor woonplaats?",
+        "sparql": "\n        SELECT (AVG(?count) as ?average) WHERE {\n          SELECT (COUNT(DISTINCT ?ligplaats) as ?count) ?woonplaats WHERE {\n            ?ligplaats a kad:Ligplaats ;\n              sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n            ?woonplaats a sor:Woonplaats .\n          }\n          GROUP BY ?woonplaats\n        }\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY",
+            "SUBQUERY"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 3,
+        "generated_query": "SELECT (AVG(?count) as ?average) WHERE { \n  SELECT (COUNT(DISTINCT ?ligplaats) as ?count) WHERE {\n    ?ligplaats a kad:Ligplaats; \n    sor:ligtIn ?woonplaats. \n    ?woonplaats a sor:Woonplaats. \n  } GROUP BY ?woonplaats\n}",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde aantal kad ligplaatsen dat zich bevinden in een sor woonplaats?",
+        "sparql": "\n    SELECT (AVG(?count) as ?average) WHERE {\n      SELECT (COUNT(DISTINCT ?ligplaats) as ?count) ?woonplaats WHERE {\n        ?ligplaats a kad:Ligplaats ;\n          sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n        ?woonplaats a sor:Woonplaats .\n      }\n      GROUP BY ?woonplaats\n    }\n\n    ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "GROUP BY",
+            "SUBQUERY"
+        ],
+        "new_schema_item": true,
+        "number_of_relations": 3,
+        "generated_query": "SELECT (AVG(?count) as ?average) WHERE { SELECT (COUNT(DISTINCT ?ligplaats) as ?count) WHERE { ?ligplaats a kad:Ligplaats; sor:ligtIn ?woonplaats. ?woonplaats a sor:Woonplaats. } GROUP BY ?woonplaats }",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Wat is het gemiddelde aantal sor verblijfsobjecten dat zich in een gebouw bevinden in provincie Flevoland?",
+        "sparql": "\n        SELECT (AVG(?count) as ?average) WHERE {\n          SELECT (COUNT(DISTINCT ?vbo) as ?count) WHERE {\n            ?vbo a sor:Verblijfsobject ;\n                 sor:maaktDeelUitVan ?geb .\n            ?geb a sor:Gebouw ;\n                 geo:sfWithin/geo:sfWithin/geo:sfWithin/^owl:sameAs ?gemeente .\n            ?gemeente a sor:Gemeente ;\n                      geo:sfWithin provincie:0024 .\n          } GROUP BY ?geb\n        }\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Provincie",
+        "location": "Flevoland",
+        "novel_functions": [
+            "GROUP BY",
+            "SUBQUERY"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 6,
+        "generated_query": "SELECT (AVG(?count) as ?average) WHERE { SELECT (COUNT(DISTINCT ?vbo) as ?count) WHERE { ?vbo a sor:Verblijfsobject; sor:maaktDeelUitVan ?geb. ?geb a sor:Gebouw. ?gemeente geo:sfWithin provincie:0024. ?gemeente owl:sameAs/^geo:sfWithin/^geo:sfWithin/^geo:sfWithin ?geb. } GROUP BY ?geb } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": true
+    },
+    {
+        "question": "Geef mij de openbare ruimtes en de bijbehorende preflabels van openbare ruimtes die zich in deventer bevinden en het woord kamp in de preflabel hebben staan",
+        "sparql": "\n        SELECT DISTINCT ?openbareruimte ?prefLabel WHERE {\n            ?openbareruimte a sor:OpenbareRuimte ;\n                sor:ligtIn ?woonplaats ;\n                skos:prefLabel ?prefLabel .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel \"Deventer\"@nl .\n            FILTER(CONTAINS(LCASE(STR(?prefLabel)), \"kamp\"))\n        }\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Woonplaats",
+        "location": "Deventer",
+        "novel_functions": [
+            "STRING",
+            "MULTIPLE VARIABLES"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 3,
+        "generated_query": "SELECT DISTINCT ?openbareruimte ?prefLabel WHERE { ?openbareruimte a sor:OpenbareRuimte; skos:prefLabel ?prefLabel; sor:ligtIn ?woonplaats. ?woonplaats a sor:Woonplaats; skos:prefLabel \"Deventer\"@nl. FILTER(CONTAINS(?prefLabel, \"kamp\")) } LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij de preflabels van woonplaatsen wiens preflabels beginnen met een B. De woonplaatsen moeten minimaal 2000 verblijfsobjecten bevatten.",
+        "sparql": "\n        SELECT ?woonplaatsLabel WHERE {\n          ?woonplaats a sor:Woonplaats ;\n                      skos:prefLabel ?woonplaatsLabel .\n          ?vbo a sor:Verblijfsobject ;\n               sor:hoofdadres/sor:ligtAan/sor:ligtIn ?woonplaats .\n          FILTER (STRSTARTS(?woonplaatsLabel, \"B\"))\n        } \n        GROUP BY ?woonplaatsLabel\n        HAVING (COUNT(DISTINCT ?vbo) >= 2000)\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "STRING",
+            "GROUP BY",
+            "HAVING"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 4,
+        "generated_query": "SELECT ?woonplaats ?prefLabel WHERE {\n  ?woonplaats a sor:Woonplaats;\n              skos:prefLabel ?prefLabel;\n              sor:bevat ?vbo.\n  FILTER (STRSTARTS(LCASE(?prefLabel), \"b\"))\n} GROUP BY ?woonplaats ?prefLabel\nHAVING (COUNT(DISTINCT ?vbo) >= 2000)",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "question": "Geef mij de preflabels van openbare ruimtes die in woonplaatsen zijn gelegen, geef ook de preflabels van de woonplaats. Selecteer alleen openbare ruimtes en woonplaatsen die apel in hun preflabel hebben staan, beide moeten dit hebben in hun preflabel.",
+        "sparql": "\n        SELECT DISTINCT ?openbareRuimteLabel ?woonplaatsLabel WHERE {\n            ?openbareRuimte a sor:OpenbareRuimte ;\n                sor:ligtIn ?woonplaats ;\n                skos:prefLabel ?openbareRuimteLabel .\n            ?woonplaats a sor:Woonplaats ;\n                skos:prefLabel ?woonplaatsLabel .\n            FILTER (CONTAINS(LCASE(?openbareRuimteLabel), \"apel\"))\n            FILTER (CONTAINS(LCASE(?woonplaatsLabel), \"apel\"))\n        }\n\n        ",
+        "generalization_level": "zeroshot",
+        "granularity": "Nederland",
+        "location": "Nederland",
+        "novel_functions": [
+            "STRING"
+        ],
+        "new_schema_item": false,
+        "number_of_relations": 3,
+        "generated_query": "SELECT DISTINCT ?openbare_ruimte ?woonplaats WHERE { \n  ?openbare_ruimte a sor:OpenbareRuimte; skos:prefLabel ?openbare_ruimte_label.\n  ?woonplaats a sor:Woonplaats; skos:prefLabel ?woonplaats_label.\n  ?openbare_ruimte sor:ligtInWoonplaats ?woonplaats.\n  FILTER(CONTAINS(LCASE(?openbare_ruimte_label), \"apel\") && CONTAINS(LCASE(?woonplaats_label), \"apel\"))\n} LIMIT 9999",
+        "results_of_generated_and_golden_query_match": false
+    },
+    {
+        "overall_execution_accuracy": 0.35714285714285715,
+        "entity linking accuracy": 0.9642857142857143,
+        "iid": 1.0,
+        "compositional": 0.45454545454545453,
+        "zeroshot": 0.14285714285714285,
+        "group by": 0.05263157894736842,
+        "having": 0.0,
+        "average": 0.14285714285714285,
+        "subquery": 0.16666666666666666,
+        "multiple variables": 0.07692307692307693,
+        "string": 0.2,
+        "new schema item": 0.1111111111111111,
+        "one relation": 0.2222222222222222,
+        "two relation": 0.0,
+        "three relation": 0.0,
+        "four relation": 0.3333333333333333,
+        "five relation": 0.125,
+        "six relation": 0.25,
+        "new schema & one relation": 0.25,
+        "new schema & two relation": 0.0,
+        "new schema & three relation": 0.0,
+        "new schema & four relation": 0.5,
+        "new schema & five relation": 0.0,
+        "new schema & six relation": 0.0
+    }
+]
