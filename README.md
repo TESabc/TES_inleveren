@@ -24,8 +24,8 @@ as well as the locationserver endpoint which can be used to retrieve IRIs of loc
 Note that the vector stores for the 4 granularities (province, municipality, street & national) fit inside a github repository.
 However, the combined vectorstore for all granularities together exceeds the file limit of github.
 Therefore, it is excluded from the github repository.
-However, all vectorstores can be replicated (including the combined vectorstore) when running the "create_training_data.py" file in
-the Creating_training_data folder.
+However, all vectorstores can be replicated (including the combined vectorstore) when running the "create_vector_store.py" file in
+the vector_stores folder.
 
 
 ## Main Text-to-SPARQL File
