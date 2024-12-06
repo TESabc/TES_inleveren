@@ -1,6 +1,5 @@
 import networkx as nx
 import pickle
-import matplotlib.pyplot as plt
 import os
 from itertools import combinations
 
@@ -233,8 +232,6 @@ class network_and_ontology_store:
 
         pos = nx.spring_layout(intersection_graph)
         nx.draw(intersection_graph, pos, node_size=700, node_color="salmon", labels=node_labels)
-        plt.title("Intersection Subgraph with Node Names")
-        plt.show()
 
         # pos = nx.spring_layout(intersection_graph)
         # #nx.draw(G, pos, with_labels=True, node_size=700, node_color="skyblue", font_size=10, font_color="black")
