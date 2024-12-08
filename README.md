@@ -1,4 +1,4 @@
-# Large Language Models and Graph Traversal Algorithms for Text-to-SPARQL Generalization on Enterprise Knowledge Graphs
+# Graph Traversal Algorithms and In-Context Learning for Enhanced Generalization in Text-to-SPARQL
 Code that enables SPARQL parsing through langchain on the Kadaster Knowledge Graph (KKG).
 
 All software is written in Python 3 (https://www.python.org/) and makes use of the LangChain framework (https://www.langchain.com/) and NetworkX package (https://networkx.org/).
