@@ -607,10 +607,14 @@ class location_and_granularity_object:
 
         return address
 
+"""
+In the next section we provide several methods for performing semantic parsing with the full configuration in our paper
+and also for the various ablations.
+"""
 
 def semantic_parsing_without_in_context_examples(question, k_shortest_routes, verbose=False):
     """
-    This method is for the ablation where we exclude semantic parsing in-context examples entirely.
+    This method is for the ablation where we exclude in-context examples for semantic parsing entirely.
 
     It accepts a natural language question and generates the corresponding SPARQL query.
 
@@ -1737,14 +1741,15 @@ def semantic_parsing_few_shot_with_ontology(question,
             'location': location_to_return}
 
 
-def semantic_parsing_workflow_few_shot_NO_ONTOLOGY(question,
+def semantic_parsing_few_shot_NO_ONTOLOGY(question,
                                                    number_of_few_shot_examples=5,
                                                    meta_data_filtering_for_few_shot_examples=True,
                                                    retrieve_examples_with_question_without_location=True,
                                                    example_retrieval_style='max_marginal_similarity',
                                                    verbose=False):
     '''
-    This method is used for the ablation where we exclude ontology information entirely.
+    This method is used for the ablation where we exclude ontology information entirely but include in-context examples
+    for semantic parsing.
 
     It accepts a natural language question and generates the corresponding SPARQL query. Although we do not include
     ontology information, we do include the location IRI to facilitate a fair comparison.
@@ -2200,7 +2205,7 @@ def only_get_condensed_ontologies(question, k_shortest_routes, verbose=False):
         response_as_list = ast.literal_eval(list_as_string)
         return response_as_list
 
-    def process_location_response_and_return_dictionary(response, question, verbose=false):
+    def process_location_response_and_return_dictionary(response, question):
         '''
         This method processes the LLM response for span classification, type classification, and entity masking.
         It takes the LLM's response and extracts the relevant information into a dictionary.
