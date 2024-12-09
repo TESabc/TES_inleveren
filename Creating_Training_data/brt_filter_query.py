@@ -14,6 +14,10 @@ from Creating_Training_data.query_components import (SpecialTokens, get_template
                                                      PARCEL, BEFORE, AFTER, SQUARE_METER, ACCOMODATION_OBJECTS, SURFACE,
                                                      MONUMENTAL_STATUS, CHANGE_ADDRESS_SUGGESTION, PREMISES, brt_properties_to_kad_con)
 
+"""
+This file provides functionality for generating training data that pairs natural language questions 
+with their corresponding SPARQL queries. 
+"""
 
 class BrtFilterQuery(Query):
     _weight = 3

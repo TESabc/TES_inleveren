@@ -2293,6 +2293,8 @@ def only_get_condensed_ontologies(question, k_shortest_routes, verbose=False):
 
 '''
 In this section, you can implement the methods described above and run this file to observe the results directly. 
+
+Ensure the "verbose" parameter is set to True to display the results in the console.
 '''
 semantic_parsing_few_shot_with_ontology('Hoeveel percelen zijn er die niet bij een nummeraanduiding horen?', 1)
 
