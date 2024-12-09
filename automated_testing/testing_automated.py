@@ -1587,8 +1587,7 @@ def test_ontology_condensation(number_of_routes=1):
             question_processed_count = question_processed_count + 1
             print("Processing question %s" % (question_processed_count))
 
-            # First we check whether the execution accuracy
-            answer_dict = None
+
             try:
                 ontology_string_object_part, ontology_string_datatype_part, ontology_string_object_part_naive, ontology_string_datatype_part_naive, size_condensed_ontology = only_get_condensed_ontologies(
                     question_dict['question'],
