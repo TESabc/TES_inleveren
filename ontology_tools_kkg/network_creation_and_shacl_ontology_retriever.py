@@ -36,16 +36,15 @@ locatie_url = config['KADASTER']['LOC_SEARCH_API']
 lookup_url = config['KADASTER']['LOC_LOOKUP_API']
 sparql_url = config['KADASTER']['KKG_API']
 
-os.environ['OPENAI_API_KEY'] = '3751bf8a4de94df8acd78a60213d688e'
-os.environ['OPENAI_API_TYPE'] = 'azure'
-os.environ['OPENAI_API_VERSION'] = '2022-12-01'
-os.environ['OPENAI_API_BASE'] = 'https://kadasterdst.openai.azure.com/'
+os.environ['OPENAI_API_KEY'] = config['OPENAI_GPT_3.5_TURBO']['AZURE_API_KEY']
+os.environ['OPENAI_API_TYPE'] = config['OPENAI_GPT_3.5_TURBO']['AZURE_API_TYPE']
+os.environ['OPENAI_API_VERSION'] = config['OPENAI_GPT_3.5_TURBO']['AZURE_API_VERSION']
+os.environ['OPENAI_API_BASE'] = config['OPENAI_GPT_3.5_TURBO']['AZURE_API_BASE']
 
 '''
 This dictionary defines commonly used URI prefixes along with their corresponding shorthand notations.
 These prefixes are used to simplify references to entities in various ontologies, 
 enabling concise and readable SPARQL queries.
-
 '''
 
 full_prefix_dictionary = {
@@ -452,8 +451,11 @@ class SHACL_ontology_retriever:
         - Returning a list of invalid paths that do not exist in the instance data.
 
         Returns:
-            list: A list of invalid paths, where each path is represented as a list of three classes
-                  [class1, class2, class3].
+            list: A list containing lists of invalid paths, where each path is represented as a list of three classes
+                  [class1, class2, class3]. Note paths can be viewed from both left-to-right and right-to-left,
+                  To ensure consistency and ease of comparison, paths are standardized by ordering class1 and class3 in
+                  such that class1 is always lexicographically smaller than class3. The key constraint is that the
+                  middle class (class2) always remains fixed in its position.
         """
 
         from itertools import combinations
@@ -1069,26 +1071,14 @@ class graph_network_creator:
 
         return list(ontology_items_belonging_to_pairs)
 
-    def find_all_relevant_pairs(self, k=5):
-        '''
-        For each valid pairs we will pre-compute the top-k shortest routes, this way we have a high probability that
-        the best route is among the top k. We choose k=5 for now because it seemed to work very well for a couple
-        of routes that were tested.
+    def find_all_relevant_pairs(self):
+        """
+        This method identifies all pairs of nodes in the ontology network that will be considered for precomputing
+        shortest paths.
 
-        In general we only care about unordered pairs. This is because I added edges both ways for almost all nodes.
-
-        The exception is that we only have a one-way edge from the class to the datatype in the datatype_edges.
-        Therefore, from those datatype edges we cannot reach any of the other edges. However, we can potentially reach
-        these datatype edges from the other edges.
-
-        Therefore, my approach will be to get all unordered pairs in the set of all edges EXCLUDING datatype edges.
-        These top-k shortest routes will be stored in a dictionary where we first sort the edges on alphabetic order.
-
-        Next, I find top-k shortest routes from the non-datatype nodes to the datatype nodes.
-
-
-        :return: list with tuples (sorther on alphabetial order) which describe all pairs
-        '''
+        It returns a list of tuples, where each tuple represents a pair of nodes for which the shortest path
+        will be precomputed.
+        """
 
         # we get all datatype nodes and the remaining edges
         datatype_nodes = []
@@ -1122,6 +1112,26 @@ class graph_network_creator:
         return combined_pairs
 
     def create_dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes(self):
+        """
+        Creates and saves multiple dictionaries that map pairs of nodes to their corresponding ontology items
+        in the top-k shortest routes.
+
+        This method generates the following dictionaries:
+        1. A dictionary that maps each pair of nodes (as a tuple) to the valid routes between them. This dictionary
+           is saved as 'all_routes_dict'.
+        2. Ten additional dictionaries, where each dictionary corresponds to the k-th shortest route (for k=1 to 10)
+           between node pairs. Each dictionary maps node pairs to a list of ontology triples
+           (e.g., "element1 property element2") associated with the respective k-th shortest routes.
+           These dictionaries are saved as
+           'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes'.
+
+        All data is saved in the
+        'ontology_tools_kkg/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/'
+        directory.
+
+        Returns:
+            None
+        """
         all_routes_dictionary = dict()
 
         all_pairs = self.find_all_relevant_pairs()
@@ -1158,6 +1168,12 @@ class graph_network_creator:
         return None
 
     def save_created_network_graph_and_ontology_tools(self):
+        """
+        Saves the gathered data and computed results from this file.
+
+        This method is responsible for persisting the information that has been collected and any calculations
+        performed within this file, ensuring that the data is stored for future use or analysis.
+        """
         main_path = './saved_network_and_ontology/'
 
         # first we save the network
