@@ -3,16 +3,29 @@ import configparser
 import requests
 from typing import List, Dict, Any
 import networkx as nx
-import networkx as nx
-import matplotlib.pyplot as plt
 import pickle
 from itertools import combinations
 import itertools
 
+"""
+This file performs the following main tasks:
+1) Extracts the SHACL ontology from the Kadaster Knowledge Graph using SPARQL queries.
+2) Builds a graph network in NetworkX from the extracted SHACL ontology.
+3) Pre-computes the shortest routes between nodes and saves them.
+"""
+
 '''
-Here i set up access to the SPARQL endpoint of the KKG.
-I also set up the keys needed for access to Azure hosted OpenAI models.
-I also define functions that help us get results.
+In this section, we load the secrets.ini file to retrieve essential configuration details, 
+including API URLs and OpenAI keys.
+
+The following information is extracted:
+
+1) API URLs for the Location Server: 
+Used to obtain International Resource Identifiers (IRIs) for specific locations in the Netherlands.
+2) API URL for the Kadaster Knowledge Graph (KKG): 
+Enables sending SPARQL queries and retrieving the corresponding results.
+3) OpenAI Configuration: 
+Includes the API key, version, and endpoint required to access an Azure-hosted Large Language Model (LLM) deployment.
 '''
 config = configparser.ConfigParser()
 # Put the absolute path to the .ini file here:
@@ -28,15 +41,20 @@ os.environ['OPENAI_API_TYPE'] = 'azure'
 os.environ['OPENAI_API_VERSION'] = '2022-12-01'
 os.environ['OPENAI_API_BASE'] = 'https://kadasterdst.openai.azure.com/'
 
+'''
+This dictionary defines commonly used URI prefixes along with their corresponding shorthand notations.
+These prefixes are used to simplify references to entities in various ontologies, 
+enabling concise and readable SPARQL queries.
+
+'''
+
 full_prefix_dictionary = {
 
-    # Those we did not include before
     'http://schema.org/': 'sdo0:',
     'http://www.w3.org/2002/07/owl#': 'owl:',
     'http://www.w3.org/2000/01/rdf-schema#': 'rdfs:',
     'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf:',
 
-    # These are from our old file
     'http://www.opengis.net/ont/geosparql#': 'geo:',
     'https://data.kkg.kadaster.nl/sor/model/def/': 'sor:',
     'https://data.kkg.kadaster.nl/sor/model/con/': 'sor-con:',
@@ -50,13 +68,7 @@ full_prefix_dictionary = {
     'http://purl.org/linked-data/cube#': 'cube:',
     'https://data.kkg.kadaster.nl/nen3610/model/def/': 'nen3610:',
 
-    # This one looked like it was added later:
     'http://www.w3.org/ns/shacl#': 'sh:',
-
-    # There are still a couple of prefices in the shacl ontology file..
-    # Did not add for now
-
-    # I retrieved this from the file of Wim
     'http://www.w3.org/2006/time#': 'time:',
     'http://www.opengis.net/def/function/geosparql/': 'geof:',
     'http://www.opengis.net/def/uom/OGC/1.0/': 'uom:',
@@ -68,9 +80,7 @@ full_prefix_dictionary = {
     'https://api.labs.kadaster.nl/datasets/brt/top10nl/services/default/sparql': 'top10nl:',
     'https://brt.basisregistraties.overheid.nl/top10nl2/id/hoofdverkeersgebruik/snelverkeer': 'snelverkeer:',
 
-    # based on the relation list i also added these prefixes:
-    # SOME OF THESE MIGHT BE WORTHLESS ( BETTER TO REMOVE RELATION ALLTOGETHER. )
-    # you can check that by rerunning while commenting out these prefixes
+    # Some extra prefixes. Double check whether actually needed.
     'http://purl.org/dc/terms/': 'dct:',
     'http://www.w3.org/ns/prov#': 'prov:',
     'http://bp4mc2.org/def/mim#': 'mim:',
@@ -78,17 +88,63 @@ full_prefix_dictionary = {
     'http://www.opengis.net/ont/gml#': 'gml:'
 }
 
+'''
+In this section, we define auxiliary methods that support the functionality of the rest of the file.
+'''
 
 def create_prefix_start_for_SPARQL_queries(prefix_dict):
+    """
+    Generates a string of PREFIX declarations for use in SPARQL queries.
+
+    This method takes a dictionary of namespace URIs and their corresponding shorthand
+    prefixes, then constructs the appropriate PREFIX statements that can be prepended to
+    a SPARQL query. These PREFIXes allow for using shorthand notations instead of full URIs
+    when writing SPARQL queries.
+
+    Args:
+        prefix_dict (dict): A dictionary where keys are full namespace URIs and values
+                             are the corresponding shorthand prefixes to be used in the query.
+
+    Returns:
+        str: A string of PREFIX declarations to be included at the beginning of a SPARQL query.
+
+    Example:
+        prefix_dict = {
+            'http://schema.org/': 'sdo0:',
+            'http://www.w3.org/2002/07/owl#': 'owl:'
+        }
+        result = create_prefix_start_for_SPARQL_queries(prefix_dict)
+        print(result)
+        # Output:
+        # PREFIX sdo0: <http://schema.org/>
+        # PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    """
     prefix_string = ""
     for key, value in prefix_dict.items():
         prefix_string = prefix_string + "PREFIX %s <%s>\n" % (value, key)
     return prefix_string
 
-
 def get_nested_value(o: dict, path: list) -> any:
     """
-    This function allows us to traverse a nested dictionary according to some specified path to retrieve data
+    Retrieves the value from a nested dictionary using a specified sequence of keys.
+
+    This function traverses a nested dictionary based on the order of keys provided in the `path` list.
+    If any key in the sequence is not found or if an error occurs during traversal, the function returns `None`.
+
+    Args:
+        o (dict): The nested dictionary to traverse.
+        path (list): A list of keys specifying the traversal path within the dictionary.
+
+    Returns:
+        any: The value located at the end of the specified path, or `None` if the path cannot be fully traversed.
+
+    Example:
+        nested_dict = {"a": {"b": {"c": 42}}}
+        path = ["a", "b", "c"]
+        result = get_nested_value(nested_dict, path)  # Returns 42
+
+        path = ["a", "x", "c"]
+        result = get_nested_value(nested_dict, path)  # Returns None
     """
     current = o
     for key in path:
@@ -102,7 +158,42 @@ def get_nested_value(o: dict, path: list) -> any:
 def run_sparql(query: str, url=sparql_url,
                user_agent_header: str = None, internal=False) -> List[Dict[str, Any]]:
     """
-    This function does API calls.
+    Executes a SPARQL query against a specified SPARQL endpoint and retrieves the results.
+
+    Parameters:
+    ----------
+    query : str
+        The SPARQL query string to be executed. Ensure the query is valid and formatted correctly.
+
+    url : str, optional
+        The URL of the SPARQL endpoint where the query will be sent.
+
+    user_agent_header : str, optional
+        An optional User-Agent header to include in the HTTP request. This can be used to specify
+        the client making the request.
+
+    internal : bool, optional
+        A flag that determines the behavior when an unsuccessful HTTP response is received:
+        - If `False` (default), returns an error message as a string for unsuccessful responses.
+        - If `True`, returns `None` for unsuccessful responses, allowing internal handling.
+
+    Returns:
+    -------
+    List[Dict[str, Any]]
+        A list of dictionaries representing the query results. Each dictionary corresponds to a
+        result row, with variable names as keys.
+
+        The value associated with each key is itself a dictionary containing metadata about the
+        binding, including:
+        - `type`: Indicates the type of the value (e.g., `uri`, `literal`, or `bnode`).
+        - `value`: Contains the actual value of the binding (e.g., a URI, literal text, or blank node ID).
+
+
+        Example:
+        [
+            {"var1": {"type": "uri", "value": "http://example.org"}},
+            {"var1": {"type": "literal", "value": "Sample Text"}}
+        ]
     """
     headers = {
         'Accept': 'application/sparql-results+json',
@@ -111,9 +202,7 @@ def run_sparql(query: str, url=sparql_url,
     if user_agent_header is not None:
         headers['User-Agent'] = user_agent_header
 
-    # print(query)
     response = requests.get(url, headers=headers, params={'query': query.replace("```", ""), 'format': 'json'})
-    # print(response.status_code)
 
     if response.status_code != 200 and internal == False:
         return "That query failed. Perhaps you could try a different one?"
@@ -121,21 +210,26 @@ def run_sparql(query: str, url=sparql_url,
         if response.status_code != 200 and internal == True:
             return None
 
-    # print(response.json())
     results = get_nested_value(response.json(), ['results', 'bindings'])
 
     return results
 
 
 def get_items_in_list_format_from_sparql_query(query, variable_name):
-    '''
-    When performing api calls on triple stores that store RDF data the results will in JSON.
-    Here we convert it to a list.
+    """
+    Executes a SPARQL query and converts the resulting JSON response into a Python list.
 
-    :param query: the sparql query needed to get the desired schema items
-    :param schema_type: should be either cls (for classes) or rel (for relations) depending on the sparql query used
-    :return: a list containing either all classes or all relations
-    '''
+    This function is particularly useful when querying RDF triple stores, as it extracts the values
+    of a specified variable from the query results and formats them as a list.
+
+    Args:
+        query (str): The SPARQL query to execute.
+        variable_name (str): The name of the variable in the SPARQL query whose values should be extracted.
+
+    Returns:
+        list: A list of extracted values corresponding to the specified variable from the SPARQL query results.
+        str: An error message if the query execution fails.
+    """
     result = run_sparql(query)
     if result == "That query failed. Perhaps you could try a different one?":
         return result
@@ -146,11 +240,20 @@ def get_items_in_list_format_from_sparql_query(query, variable_name):
 
 
 class SHACL_ontology_retriever:
+    """
+    A utility class for extracting and analyzing the SHACL ontology from the Kadaster Knowledge Graph.
+
+    Key Features:
+    - Provides methods to retrieve and process the SHACL ontology.
+    - Identifies paths of length 3 within the ontology that are absent in the underlying instance data.
+      This functionality supports the heuristic outlined in our research paper for discarding invalid paths.
+    """
     def __init__(self):
         # list with classes
         self.classes = self.get_classes()
         # list with properties
         self.properties = self.get_properties()
+
         # list with tuples representing edges
         self.object_edges = self.get_object_edges()
         # list with tuples representing edge
@@ -186,6 +289,12 @@ class SHACL_ontology_retriever:
         self.invalid_paths = self.get_invalid_paths_in_object_edges()
 
     def get_classes(self):
+        """
+        Retrieves a list of classes defined in the SHACL NodeShapes from the Kadaster Knowledge Graph.
+
+        Returns:
+            list: A list of class IRIs extracted from the SHACL ontology.
+        """
         query_to_retrieve_classes_from_shacl_shapes = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX sh: <http://www.w3.org/ns/shacl#>
@@ -202,12 +311,10 @@ class SHACL_ontology_retriever:
 
     def fix_class_list_such_that_it_only_contains_classes_in_the_network_graph(self):
         '''
-        There seem to be some data quality issues. Some classes are defined, but do not seem to be
-        connected to other parts in the ontology.
+        Resolves data quality issues by ensuring the class list only includes classes connected in the ontology network graph.
 
-        So we fix this by taking an interesection between the retrieved classes and the relevant nodes
-        that will be added to our ontology network graph.
-        :return:
+        This is done by intersecting the retrieved classes with class nodes present in object edges, datatype edges,
+        and subclass structures to exclude disconnected classes.
         '''
 
         classes_in_ontology_network_graph = set()
@@ -232,6 +339,14 @@ class SHACL_ontology_retriever:
         self.classes = list(set(self.classes).difference(classes_in_class_list_but_not_in_network))
 
     def get_properties(self):
+        """
+        Retrieves all properties (relations) defined in the SHACL shapes from the Kadaster Knowledge Graph.
+
+        Executes a SPARQL query to extract unique properties and returns them as a list.
+
+        Returns:
+            list: A list of properties (relations) extracted from the SHACL shapes.
+        """
         query_to_retrieve_relations_from_shacl_shapes = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -252,31 +367,31 @@ class SHACL_ontology_retriever:
         return relations
 
     def get_object_edges(self):
-        '''
-        With this function we retrieve all combinations of
-        class1 relation class2
+        """
+        Retrieves object edges in the ontology, representing relationships between classes as triples:
+        (class1, relation, class2).
 
-        We obtain triples which show how classes are related to eachother through properties
-        Basically a triple describes an edge in a graph as following: node edge node
+        Constructs a SPARQL query to extract connections where a property links an origin class to a target class.
 
-        If there are additional restrictions on the right-hand edge defined by the SHACL shapes,
-        we exclude edges like that in this function.
+        The query includes the following filter to exclude edges with value-list restrictions:
 
-        The get_object_edges_with_restictions() function will handle the case where there are restrictions.
+            FILTER NOT EXISTS {
+                ?prop sh:in ?list .
+            }
 
-        :return: returns a list with tuples, where each tuple represents an edge
-        '''
+        For edges where the target class has specific value restrictions, a separate query is used to traverse
+        the restriction list and add an edge for each valid element in the
+        function "get_object_edges_with_restrictions()".
 
-        # Note that the following part in the query:
+        Additionally, this function manually adds edges for integrating data from the Central Bureau of
+        Statistics (CBS), enhancing compatibility with Kadaster's knowledge graph and enabling queries about
+        provinces and municipalities.
 
-        # FILTER NOT EXISTS {
-        # ?propshp sh:in ?lijst .
-        # }.
+        Returns:
+            list: A list of tuples, where each tuple represents an edge in the format
+                  (origin_class, property, target_class).
+        """
 
-        # Makes sure we do not obtain object edges where there are additional restrictions on the right-side edge.
-        # When there are additional restrictions on the right-side edge where that part can only take
-        # specific values, we use a separate query traversing the restrictions list in order to get
-        # to add an edge for each of the elements in the list.
         get_object_edges_query = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX sh: <http://www.w3.org/ns/shacl#>
@@ -310,32 +425,36 @@ class SHACL_ontology_retriever:
         for origin_cls, prop, target_cls in zip(origin_class_list, property_list, target_class_list):
             edge_list.append((origin_cls, prop, target_cls))
 
-        # I manually add some object edges that are not in the SHACL ontology.
-        # This part of the knowledge graph is actually from the Central Bureau of Statistics (CBS),
-        # it is not maintained by Kadaster, but it can be combined with our own knowledge graph.
-        # such linking is often done within semantic web / linked data.
-        # We add this in order to be able to ask questions about provinces & municipalities also.
+        # Manually add object edges that are not included in the SHACL ontology.
+        # These edges originate from the Central Bureau of Statistics (CBS) knowledge graph.
+        # Although CBS data is not maintained by Kadaster, it can be integrated with the Kadaster knowledge graph.
+        # This integration aligns with the principles of the semantic web and linked data.
+        # Adding these edges enables querying about provinces and municipalities within the combined graph.
         edge_list.append(('sor:Gebouw', 'geo:sfWithin', 'wbk:Buurt'))
         edge_list.append(('wbk:Buurt', 'geo:sfWithin', 'wbk:Wijk'))
         edge_list.append(('wbk:Wijk', 'geo:sfWithin', 'wbk:Gemeente'))
         edge_list.append(('sor:Gemeente', 'owl:sameAs', 'wbk:Gemeente'))
-        # This one we already have in our knowledge graph:
-        # edge_list.append(('sor:Gemeente', 'geo:sfWithin', 'sor:Provincie'))
 
         return edge_list
 
     def get_invalid_paths_in_object_edges(self):
-        '''
-        This function analyzes all paths that constitute 3 classes through the object edges.
+        """
+        Identifies invalid paths of length 3 in the ontology that do not exist in the underlying instance data.
 
-        We perform SPARQL queries to verify whether the paths implied by the ontology actually exist in the fact-level
-        structure. 75% of these 3-class paths do not exist in the fact-level structure.
+        This method examines the ontology to identify sequences of three connected classes (paths of length 3).
+        It verifies each path's presence in the underlying instance data by executing SPARQL queries.
+        If a path is absent in the instance data, it is marked as invalid. This functionality is crucial for
+        implementing the heuristic described in the research paper to discard invalid paths.
 
-        It is critical to use these invalid (sub)paths as restrictions when determining paths between nodes
-        in the ontology graph.
+        The process includes:
+        - Enumerating all possible paths of three connected classes using object edges.
+        - Validating each path by checking its existence in the instance data through SPARQL queries.
+        - Returning a list of invalid paths that do not exist in the instance data.
 
-        :return: list containing lists of invalid paths along 3 classes
-        '''
+        Returns:
+            list: A list of invalid paths, where each path is represented as a list of three classes
+                  [class1, class2, class3].
+        """
 
         from itertools import combinations
 
@@ -446,25 +565,30 @@ class SHACL_ontology_retriever:
         return list_with_invalid_paths
 
     def get_object_edges_with_restrictions(self):
-        '''
-        With this function we retrieve all combinations of
-        class1 relation class2
+        """
+        Generates object edges for every value-list entity contained in the SHACL ontology.
 
-        We obtain triples which show how classes are related to eachother through properties
-        Basically a triple describes an edge in a graph as following: node edge node
+        This function constructs vertex-edge pairs of the format:
+            (class, property, value-list-entity)
 
-        :return: returns a list with tuples, where each tuple represents an edge
-        '''
+        For each value-list entity associated with a class, a corresponding vertex-edge pair is created.
 
-        # Note that the following part in the query:
+        The SPARQL query utilizes the following pattern:
+            sh:in ?list .
+            ?list rdf:rest*/rdf:first ?value .
 
-        #     sh:in ?list .
+        This pattern efficiently traverses all value-list entities in the SHACL ontology using SPARQL,
+        allowing us to directly retrieve all value list entities associated with a class.
 
-        # ?list rdf:rest*/rdf:first ?value .
+        Additionally, the retrieved value-list entities are appended to the class list (self.classes),
+        ensuring they can seamlessly be included in the prompt used for simultaneously selecting both
+        classes and value-list entities.
 
-        # we use smart SPARQL to traverse all the different types that are in the restriction.
-        # We create edges for each of the restrictions. (If there are 8 restrictions we get 8 edges)
-        #
+        Returns:
+            list: A list of tuples representing edges, where each tuple is in the format
+                  (origin_class, property, value_list_entity).
+        """
+
         get_object_edges_query = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX sh: <http://www.w3.org/ns/shacl#>
@@ -497,26 +621,22 @@ class SHACL_ontology_retriever:
         edge_list = []
         for origin_cls, prop, target in zip(origin_class_list, property_list, target_list):
             edge_list.append((origin_cls, prop, target))
-
-            # We add our target to our list of classes.
-            # This is helpful since our ontology retriever should retrieve these nodes,
-            # because they allow us to directly write SPARQL
             self.classes.append(target)
 
         return edge_list
 
     def get_datatype_edges(self):
         '''
-        With this function we retrieve all combinations of
-        class1 relation data
+        Retrieves all datatype vertex-edge pairs in the ontology, representing relationships between classes and
+        literal types (such as strings or integers) through properties.
 
-        We obtain triples which show how classes are related to literals (data values such as strings or integers)
-        through properties.
+        The resulting triples describe edges in a graph with the format: (class1, property, datatype), where the
+        final node is not another class, but the datatype associated with the literals.
 
-        Basically a triple describes an edge in a graph as following: node edge node
-        In this case the last node is not a class but a piece of data.
+        This function constructs a SPARQL query to extract the relevant class-property-datatype connections.
 
-        :return: returns a list with tuples, where each tuple represents an edge
+        :return: A list of tuples, where each tuple represents an edge in the format
+                 (origin_class, property, datatype).
         '''
 
         get_datatype_edges_query = """
@@ -552,10 +672,16 @@ class SHACL_ontology_retriever:
         return edge_list
 
     def get_subclass_structure(self):
-        '''
-        For each class we get its superclasses. We create triples describing subclass/superclass structure.
-        :return: a list with subclass/superclass structure triples
-        '''
+        """
+        Retrieves the subclass-superclass relationships for each class in the ontology, constructing triples that
+        describe the class hierarchy (subclass, "rdfs:subClassOf", superclass).
+
+        This method iterates through all classes in the ontology and retrieves their superclasses using SPARQL queries,
+        then creates triples that represent the subclass/superclass structure.
+
+        :return: A list of triples, each representing a subclass-superclass relationship in the format
+                 (subclass, "rdfs:subClassOf", superclass).
+        """
         subclass_structure_set = set()
 
         def add_triples(subclass, superclass_list):
@@ -583,6 +709,22 @@ class SHACL_ontology_retriever:
         return list(subclass_structure_set)
 
     def replace_prefixes(self):
+        """
+        Replaces full URI prefixes with their shorthand notation in all ontology-related objects.
+
+        This method updates the following elements:
+        - Classes (`self.classes`)
+        - Properties (`self.properties`)
+        - Object edges (`self.object_edges`)
+        - Datatype edges (`self.datatype_edges`)
+        - Object edges with restrictions (`self.object_edges_with_restrictions`)
+        - Subclass structure (`self.subclass_structure`)
+
+        It iterates through each element and replaces full URIs with their corresponding shorthand prefixes using
+        the provided `full_prefix_dictionary`.
+
+        This ensures consistency and readability by simplifying the URIs throughout the ontology data.
+        """
         def replace_substrings_with_prefixes_in_list(input_list, full_prefix_dictionary=full_prefix_dictionary):
             # Iterate through each string in the list
             for i in range(len(input_list)):
@@ -623,18 +765,60 @@ class SHACL_ontology_retriever:
         self.subclass_structure = replace_substring_with_prefixes_in_edge_list(self.subclass_structure)
 
     def create_classes_without_comments_string(self):
+        """
+        Generates a string containing all classes and value-list entities, each on a new line.
+
+        This function iterates through the list of classes (`self.classes`) and concatenates them into a single
+        string, with each class or value-list entity separated by a newline. This string can be used later to
+        facilitate the selection of relevant classes and value-list entities in prompts.
+
+        :return: A string where each class or value-list entity is listed on a new line.
+        """
         class_string = ""
         for class_ in self.classes:
             class_string += "%s\n" % class_
         return class_string
 
     def create_relations_without_comments_string(self):
+        """
+        Generates a string containing all properties (relations), each on a new line.
+
+        This function iterates through the list of properties (`self.properties`) and concatenates them into a
+        single string, with each property (relation) separated by a newline. This string can be used later to
+        facilitate the selection of relevant properties in prompts.
+
+        :return: A string where each property (relation) is listed on a new line.
+        """
         relation_string = ""
         for relation in self.properties:
             relation_string += "%s\n" % relation
         return relation_string
 
     def create_dictionary_that_maps_property_to_neighboring_nodes(self):
+        """
+        This function processes the object edges (`self.object_edges`), object edges with restrictions
+        (`self.object_edges_with_restrictions`), and datatype edges (`self.datatype_edges`) to construct two
+        dictionaries:
+
+        1. `dictionary_set`: A dictionary where each property is a key, and the corresponding value is a set of all
+           nodes that are connected to it.
+        2. `dictionary_triple_string`: A dictionary where each property is a key, and the corresponding value is a set
+           of all vertex-edge pairs (as strings in the format "element1 property element2") that involve that property.
+
+        These dictionaries help in mapping properties to the nodes they are related to and the vertex-edge relationships
+        they participate in.
+
+        Additionally, the dictionaries are saved as pickle files for later use:
+        - `dictionary_set` is saved in:
+          "ontology_tools_kkg/saved_network_and_ontology/dictionary_that_maps_property_to_neighboring_nodes"
+        - `dictionary_triple_string` is saved in:
+          "ontology_tools_kkg/saved_network_and_ontology/dictionary_that_maps_property_to_all_ontology_triples_as_string"
+
+        :return:
+            tuple: A tuple containing two dictionaries:
+                - `dictionary_set`: Maps properties to sets of neighboring nodes.
+                - `dictionary_triple_string`: Maps properties to sets of vertex-edge pairs as strings.
+        """
 
         dictionary_set = dict()
         dictionary_triple_string = dict()
@@ -680,45 +864,49 @@ class graph_network_creator:
         self.save_created_network_graph_and_ontology_tools()
 
     def create_network_graph(self):
-        '''
-        We formulate the ontology as a graph network.
+        """
+        This function formulates the ontology as a directed graph network using the `networkx` package.
 
-        We formulate the network as a directed graph because we want to have certain restrictions at certain nodes
-        which allow to model an ontology as a graph network.
+        The graph models the following types of relationships:
 
+        1. **Object Vertex-Edge Pairs**: Modeled as **bi-directional edges**.
+           In SPARQL, the reverse property operator (`^`) allows traversal of properties in the opposite direction.
+           By including edges in both directions, the graph supports scenarios where properties are defined in only one direction, which is a common occurrence in real-world ontologies.
 
-        :return: a graph network object from the networkx package
-        '''
+        2. **Datatype Vertex-Edge Pairs**: For each datatype vertex-edge pair in the ontology, a **directed edge is added pointing to the datatype**.
+           This ensures that nonsensical paths like:
+           "building -> buildingyear -> xsd:PositiveInteger -> average_temperature -> Netherlands"
+           are prevented.
 
-        '''
-        For every object_edge in the ontology we add a directed edge going BOTH ways!
-        This is because in SPARQL it is possible to use a property defined to go in one direction,
-        on the other direction by switching subject & object.
-        this is because in knowledge graphs sometimes the ontology can be incomplete where properties are
-        defined in one direction but not in the other.
-        '''
+        3. **Value-List-Entity Vertex-Edge Pairs**: Similar to datatype edges,
+           only **edges pointing towards the value-list entity** are modeled.
+           This is because the value-list entities in the KKG SHACL ontology are not logically suited to serve as
+           intermediate nodes in graph paths.
+
+        4. **Subclass Relationships**: Directed edges are added in **both directions** for subclass relationships.
+           This could be useful for traversing subclass hierarchies in either direction when constructing SPARQL queries.
+
+        :return:
+            This method returns nothing, but it instantiates two instance attributes:
+            1) self.graph_network:
+               networkx.DiGraph: A directed graph object representing the ontology, with nodes and edges reflecting object
+               relations, datatype constraints, value-list entities, and subclass hierarchies.
+            2) self.edge_labels:
+               Dictionary: A mapping where the keys are SORTED tuples representing adjacent nodes in the graph network
+               (e.g., ('node1', 'node2')), and the values are lists of ontology triples (formatted as strings, for
+               example: "node1 property node2") that describe the relationships enabling traversal between these nodes.
+               Since we do not store properties in the NetworkX `DiGraph` , this dictionary provides a way to
+               capture and reference the specific ontology properties used for traversing from one node to another.
+               IMPORTANT: the tuple keys are SORTED.
+
+        """
+
         for object_edge in self.shacl_ontology.object_edges:
             # we add edges going both direction to our network
             self.graph_network.add_edge(object_edge[0], object_edge[2], label="none")
             self.graph_network.add_edge(object_edge[2], object_edge[0], label="none")
 
-            '''
-            We first sort the nodes on alphabetic order.
 
-            We use these sorted nodes as a key in our edge_label dictionary where the corresponding values
-            will be all ontology triples between these two nodes (going in both directions).
-
-            When we have a condensed version of our network (found through shortest routes), we will have a collection 
-            of edges in this condensed version of the network.
-
-            If there is an edge in this condensed version of the network, we do not care which direction the edge
-            points at. We would like the have all ontology triples existing in the ontology structure between
-            those two nodes (regardless of which point these ontology triples point at).
-
-            By sorting the nodes and using them as key in our edge_label dictionary we have as
-            corresponding value a list with all ontology triples between these two nodes going in both directions. 
-            This will later be helpful for reconstructing an ontology based on a condensed network.
-            '''
             node_key = tuple(sorted([object_edge[0], object_edge[2]]))
 
             # we create a string from the edge_tuple.
@@ -731,34 +919,10 @@ class graph_network_creator:
                 # Key doesn't exist, create a new key-value pair with an empty list as the value
                 self.edge_labels[node_key] = [edge_string]
 
-        '''
-        For every datatype_edge in the ontology we add a directed edge ONLY pointing to the datatype.
-        Otherwise, the network would allow such a path:
-        building -> buildingyear -> xsd:PositiveInteger -> average_temperate -> Netherlands.
-        Such paths do not make sense. We want to model such datatype nodes as endpoints in our graph, one way
-        to accomplish this is by creating a directed edge only pointing towards the datatype.
-        '''
         for datatype_edge in self.shacl_ontology.datatype_edges:
             # we add edges going both direction to our network
             self.graph_network.add_edge(datatype_edge[0], datatype_edge[2], label="none")
 
-            '''
-            We first sort the nodes on alphabetic order.
-
-            We use these sorted nodes as a key in our edge_label dictionary where the corresponding values
-            will be all ontology triples between these two nodes (going in both directions).
-
-            When we have a condensed version of our network (found through shortest routes), we will have a collection 
-            of edges in this condensed version of the network.
-
-            If there is an edge in this condensed version of the network, we do not care which direction the edge
-            points at. We would like the have all ontology triples existing in the ontology structure between
-            those two nodes (regardless of which point these ontology triples point at).
-
-            By sorting the nodes and using them as key in our edge_label dictionary we have as
-            corresponding value a list with all ontology triples between these two nodes going in both directions. 
-            This will later be helpful for reconstructing an ontology based on a condensed network.
-            '''
             node_key = tuple(sorted([datatype_edge[0], datatype_edge[2]]))
 
             # we create a string from the edge_tuple.
@@ -805,14 +969,27 @@ class graph_network_creator:
                 # Key doesn't exist, create a new key-value pair with an empty list as the value
                 self.edge_labels[node_key] = [edge_string]
 
-    def get_top_k_shortest_simple_routs_between_nodes(self, source, target, top_k=10):
-        '''
+    def get_40_shortest_simple__valid_routes_between_nodes(self, source, target):
+        """
+        Finds the shortest simple paths between a source node and a target node in the ontology graph, filtering out
+        invalid paths based on predefined invalid patterns.
 
-        :param source: source node
-        :param target: target node
-        :param top_k: the top k shortest paths you want to retrive (for example 5 or 10)
-        :return: list with top k shortest paths
-        '''
+        This method first uses NetworkX's `shortest_simple_paths` function to generate up to the 40 shortest simple
+        routes between the source and target nodes.
+
+        It then filters these paths using a list of invalid sequences of three classes (stored in
+        `self.shacl_ontology.invalid_paths`). A path is discarded if it contains any of the invalid sequences, either
+        in their original order or reversed (since the sequence is considered invalid in both directions).
+
+        :param source:
+            The starting node for path search.
+        :param target:
+            The target node for path search.
+
+        :return:
+            list: A list of valid paths (each path represented as a list of nodes) between the source and target nodes.
+            If no paths exist or all paths are invalid, an empty list is returned.
+        """
 
         if nx.has_path(self.graph_network, source, target):
             all_routes = []
@@ -847,11 +1024,28 @@ class graph_network_creator:
         return all_routes
 
     def get_all_unique_ontology_items_for_top_k_simple_routes_between_nodes(self, k, top_k_shortest_routes):
-        '''
+        """
+        Retrieves all unique ontology items (triples) associated with the top-k shortest simple routes between two nodes
+        in the ontology graph.
 
-        :param top_k_shortest_routes: list containing lists that describe shortet routes
-        :return: list containing all unique ontology items belonging to the top_k shortest routes
-        '''
+        This method takes a list of shortest routes, selects the top-k shortest paths, and for each path,
+        it extracts all the unique consecutive node pairs. For each pair, it retrieves the associated ontology triples
+        from `self.edge_labels` and returns a list of all unique ontology items (in the form of triple strings) that
+        belong to these top-k shortest routes.
+
+        The parameter `top_k_shortest_routes` allows for varying the number of shortest routes used, which is needed
+        when varying the amount of routes used between relevant nodes during GTOC for ontology condensation.
+
+        :param k:
+            The number of top shortest routes to consider from the provided list of paths.
+        :param top_k_shortest_routes:
+            A list of shortest routes, where each route is a list of consecutive nodes representing a valid path.
+
+        :return:
+            list: A list of unique ontology items (triples) in the format
+            ["element1 property1 element2", "element2 property2 element3"],
+            corresponding to the top-k shortest routes between the source and target nodes.
+        """
         sorted_pairs = set()
         ontology_items_belonging_to_pairs = set()
 
@@ -937,7 +1131,7 @@ class graph_network_creator:
         for pair in all_pairs:
             counter = counter + 1
             print(counter)
-            top_k_shortest_routes = self.get_top_k_shortest_simple_routs_between_nodes(pair[0], pair[1])
+            top_k_shortest_routes = self.get_40_shortest_simple__valid_routes_between_nodes(pair[0], pair[1])
 
             all_routes_dictionary[tuple(sorted(pair))] = top_k_shortest_routes
 

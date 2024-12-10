@@ -1124,7 +1124,7 @@ def semantic_parsing_few_shot_with_ontology(question,
                                             naive_schema_linking_without_graph_traversal=False,
                                             verbose=True,
                                             condense_ontology=True):
-    '''
+    """
 
     This method performs semantic parsing including both in-context examples and ontology information.
 
@@ -1180,7 +1180,7 @@ def semantic_parsing_few_shot_with_ontology(question,
         - 'query': The generated SPARQL query based on the input question and ontology schema.
         - 'granularity': The level of granularity for the location (e.g., Woonplaats, Gemeente).
         - 'location': The location identified from the question, based on the extracted geographical context.
-    '''
+    """
     # llm = AzureChatOpenAI(deployment_name="gpt-35-turbo", model_name="gpt-35-turbo", verbose=False, max_retries=2,
     #                       temperature=0, openai_api_version="2023-05-15")
 
