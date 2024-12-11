@@ -27,7 +27,7 @@ It includes the endpoint for sending SPARQL queries to be executed against KKG, 
 Please note that the vector stores for the four granularities (province, municipality, street, and national) fit within the file size limits of this GitHub repository. However, the combined vector store for all granularities exceeds GitHub's file size limit and is therefore excluded from the repository.
 That said, all vector stores, including the combined vector store, can be replicated by running the `create_vector_store.py` script located in the `vector_stores` folder.
 
-
+## Main Text-to-SPARQL File
 This section describes the `semantic_parsing.py` file located in the main directory, which is responsible for performing semantic parsing.
 
 The file contains the primary function for executing text-to-SPARQL operations on Kadaster Knowledge Graph (KKG). It also includes various prompting-based modules, such as:
