@@ -16,8 +16,7 @@ Since we use **GPT-4-32k**, which requires a paid subscription to make API calls
 1. **An OpenAI API Key**: You can obtain an API key by subscribing to OpenAI's services.
 2. **Your Own Model Deployment on Azure**: If you have deployed the model on Azure, you can extract the necessary authentication keys from your deployment.
 
-Our repository supports integration with various Large Language Models (LLMs) through LangChain, including future releases.  
-To set up the API key for your chosen model, modify the `secrets.ini` file and update the LangChain LLM object creation in `semantic_parsing.py`. 
+Our repository supports integration with various Large Language Models (LLMs) through LangChain, including future releases. To set up the API key for your chosen model, modify the `secrets.ini` file and update the LangChain LLM object creation in `semantic_parsing.py`. 
 For configuration details specific to your model, refer to the official LangChain documentation: [LangChain Documentation](https://python.langchain.com/v0.2/docs/introduction/).
 
 The `secrets.ini` file contains the API endpoints for Kadaster Knowledge Graph (KKG), which are publicly available and free to use. 
