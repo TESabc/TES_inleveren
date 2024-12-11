@@ -812,9 +812,9 @@ class SHACL_ontology_retriever:
 
         Additionally, the dictionaries are saved as pickle files for later use:
         - `dictionary_set` is saved in:
-          "ontology_tools_kkg/saved_network_and_ontology/dictionary_that_maps_property_to_neighboring_nodes"
+          "precompute_shortest_paths/saved_data/dictionary_that_maps_property_to_neighboring_nodes"
         - `dictionary_triple_string` is saved in:
-          "ontology_tools_kkg/saved_network_and_ontology/dictionary_that_maps_property_to_all_ontology_triples_as_string"
+          "precompute_shortest_paths/saved_data/dictionary_that_maps_property_to_all_ontology_triples_as_string"
 
         :return:
             tuple: A tuple containing two dictionaries:
@@ -844,7 +844,7 @@ class SHACL_ontology_retriever:
         process_edge_type(self.object_edges_with_restrictions)
         process_edge_type(self.datatype_edges)
 
-        main_path = './saved_network_and_ontology/'
+        main_path = './saved_data/'
         # we save dictionary_that_maps_property_to_neighboring_nodes
         with open(main_path + 'dictionary_that_maps_property_to_neighboring_nodes', 'wb') as f:
             pickle.dump(dictionary_set, f)
@@ -1073,8 +1073,9 @@ class graph_network_creator:
 
     def find_all_relevant_pairs(self):
         """
-        This method identifies all pairs of nodes in the ontology network that will be considered for precomputing
-        shortest paths.
+        This method identifies all pairs of nodes in the ontology network to be considered for precomputing
+        shortest paths. Note: Paths originating from datatype nodes are excluded because such paths do not exist.
+        In the ontology, edges only point towards datatype nodes, not away from them.
 
         It returns a list of tuples, where each tuple represents a pair of nodes for which the shortest path
         will be precomputed.
@@ -1126,7 +1127,7 @@ class graph_network_creator:
            'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes'.
 
         All data is saved in the
-        'ontology_tools_kkg/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/'
+        'precompute_shortest_routes/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/'
         directory.
 
         Returns:
@@ -1145,7 +1146,7 @@ class graph_network_creator:
 
             all_routes_dictionary[tuple(sorted(pair))] = top_k_shortest_routes
 
-        main_path = './saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/'
+        main_path = './saved_data/precomputed_shortest_routes/'
         # we save dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes
         path = 'all_routes_dict'
         with open(main_path + path, 'wb') as f:
@@ -1159,7 +1160,7 @@ class graph_network_creator:
                 unique_ontology_items_needed_for_top_k_shortest_routes = self.get_all_unique_ontology_items_for_top_k_simple_routes_between_nodes(
                     k, value)
                 k_routes_dict[key] = unique_ontology_items_needed_for_top_k_shortest_routes
-            main_path = './saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/'
+            main_path = './saved_data/precomputed_shortest_routes/'
             # we save dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes
             path = 'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_%s_shortest_routes' % (str(k))
             with open(main_path + path, 'wb') as f:
@@ -1174,7 +1175,7 @@ class graph_network_creator:
         This method is responsible for persisting the information that has been collected and any calculations
         performed within this file, ensuring that the data is stored for future use or analysis.
         """
-        main_path = './saved_network_and_ontology/'
+        main_path = './saved_data/'
 
         # first we save the network
         nx.write_graphml(self.graph_network, main_path + "network_graph.graphml")

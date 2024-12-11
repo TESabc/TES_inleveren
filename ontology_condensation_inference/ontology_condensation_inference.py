@@ -21,7 +21,7 @@ class network_and_ontology_store:
 
         # Set main path from which we will load files.
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        main_path = os.path.join(current_dir, '../ontology_tools_kkg/saved_network_and_ontology/')
+        main_path = os.path.join(current_dir, '../precompute_shortest_routes/saved_data/')
 
         # Load the NetworkX graph network.
         self.network = nx.read_graphml(main_path + "network_graph.graphml")
@@ -119,7 +119,7 @@ class network_and_ontology_store:
           ["element_a property1 element_b", "element_b property2 element_c"].
         '''
         main_path = os.path.join(current_dir,
-                                 '../ontology_tools_kkg/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/')
+                                 '../precompute_shortest_routes/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/')
         path = 'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_%s_shortest_routes' % (
             str(k_shortest_routes))
         with open(main_path + path, 'rb') as f:
@@ -134,7 +134,7 @@ class network_and_ontology_store:
         - **Values**: Sets containing vertex-edge pairs represented as strings in the format 
           "element1 property element2", indicating all instances where the property is involved.
         '''
-        main_path = os.path.join(current_dir, '../ontology_tools_kkg/saved_network_and_ontology/')
+        main_path = os.path.join(current_dir, '../precompute_shortest_routes/saved_network_and_ontology/')
         with open(main_path + 'dictionary_that_maps_property_to_all_ontology_triples_as_string', 'rb') as f:
             loaded_data = pickle.load(f)
         self.dictionary_that_maps_property_to_all_ontology_triples_as_string = loaded_data
@@ -199,6 +199,7 @@ class network_and_ontology_store:
         nodes_obtain_from_retrieved_relations = set()
         for rel in retrieved_relations:
             # All vertex-edge pairs containing any of the relevant properties must be included in GTOC.
+            # Therefore, we add them directly here.
             if rel in self.dictionary_that_maps_property_to_all_ontology_triples_as_string:
                 for triple in self.dictionary_that_maps_property_to_all_ontology_triples_as_string[rel]:
                     triples_set.add(triple)
@@ -229,7 +230,11 @@ class network_and_ontology_store:
         ontology_string_object_part = ""
         ontology_string_datatype_part = ""
 
-        # we remove some triples which should not be in the ontology (gebruiksdoel should only be defined on sor:Verblijfsobject)
+        '''
+        Here we remove certain triples that should not exist in the ontology. Specifically, "gebruiksdoel" 
+        should only be defined on "sor:Verblijfsobject", not on "sor:Gebouwzone".
+        This data quality issue has been confirmed by employees of the Dutch Land Registry (Kadaster).
+        '''
         triples_to_remove = {'sor:Gebouwzone sor:gebruiksdoel sor-con:bijeenkomstfunctie',
                              'sor:Gebouwzone sor:gebruiksdoel sor-con:celfunctie',
                              'sor:Gebouwzone sor:gebruiksdoel sor-con:gezondheidsfunctie',
@@ -254,7 +259,7 @@ class network_and_ontology_store:
     def naive_ontology_selection(self, retrieved_classes, retrieved_relations):
         """
         Condenses the ontology schema into a smaller subset tailored to specific natural language
-        questions using naive ontology condensation, and returns the condensed
+        questions using NAIVE ontology condensation, and returns the condensed
         ontology.
 
         :param retrieved_classes:
@@ -295,7 +300,11 @@ class network_and_ontology_store:
         ontology_string_object_part = ""
         ontology_string_datatype_part = ""
 
-        # we remove some triples which should not be in the ontology (gebruiksdoel should only be defined on sor:Verblijfsobject)
+        '''
+        Here we remove certain triples that should not exist in the ontology. Specifically, "gebruiksdoel" 
+        should only be defined on "sor:Verblijfsobject", not on "sor:Gebouwzone".
+        This data quality issue has been confirmed by employees of the Dutch Land Registry (Kadaster).
+        '''
         triples_to_remove = {'sor:Gebouwzone sor:gebruiksdoel sor-con:bijeenkomstfunctie',
                              'sor:Gebouwzone sor:gebruiksdoel sor-con:celfunctie',
                              'sor:Gebouwzone sor:gebruiksdoel sor-con:gezondheidsfunctie',
@@ -342,7 +351,11 @@ class network_and_ontology_store:
         ontology_string_object_part = ""
         ontology_string_datatype_part = ""
 
-        # we remove some triples which should not be in the ontology (gebruiksdoel should only be defined on sor:Verblijfsobject)
+        '''
+        Here we remove certain triples that should not exist in the ontology. Specifically, "gebruiksdoel" 
+        should only be defined on "sor:Verblijfsobject", not on "sor:Gebouwzone".
+        This data quality issue has been confirmed by employees of the Dutch Land Registry (Kadaster).
+        '''
         triples_to_remove = {'sor:Gebouwzone sor:gebruiksdoel sor-con:bijeenkomstfunctie',
                              'sor:Gebouwzone sor:gebruiksdoel sor-con:celfunctie',
                              'sor:Gebouwzone sor:gebruiksdoel sor-con:gezondheidsfunctie',

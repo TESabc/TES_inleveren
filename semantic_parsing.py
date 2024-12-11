@@ -16,7 +16,7 @@ from typing import List, Dict, Any
 import os
 from langchain_openai import AzureChatOpenAI
 from concurrent.futures import ThreadPoolExecutor
-from shortest_path_algorithms.shortest_path import network_and_ontology_store
+from ontology_condensation_inference.ontology_condensation_inference import network_and_ontology_store
 import warnings
 
 warnings.filterwarnings("ignore")
