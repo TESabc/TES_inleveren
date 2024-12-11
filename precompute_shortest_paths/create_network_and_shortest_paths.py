@@ -1127,7 +1127,7 @@ class graph_network_creator:
            'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes'.
 
         All data is saved in the
-        'precompute_shortest_routes/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/'
+        'precompute_shortest_routes/saved_data/precomputed_shortest_routes/'
         directory.
 
         Returns:

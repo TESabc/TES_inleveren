@@ -2,10 +2,10 @@ import random
 import string
 import requests
 
-from Creating_Training_data.query import Query
-from Creating_Training_data.functions import Functions
-from Creating_Training_data.dependencies import Dependency, get_dependency_text
-from Creating_Training_data.query_components import (SpecialTokens, get_template_formatted, Template, STREET, CITY,
+from create_training_data.query import Query
+from create_training_data.functions import Functions
+from create_training_data.dependencies import Dependency, get_dependency_text
+from create_training_data.query_components import (SpecialTokens, get_template_formatted, Template, STREET, CITY,
                                                      WIJK, BUURT,
                                                      GEMEENTE, NEWEST, OLDEST, BIGGEST, SMALLEST, PARCEL_SURFACE,
                                                      AMOUNT, BUILD_YEAR,

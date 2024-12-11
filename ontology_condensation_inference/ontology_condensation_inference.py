@@ -119,7 +119,7 @@ class network_and_ontology_store:
           ["element_a property1 element_b", "element_b property2 element_c"].
         '''
         main_path = os.path.join(current_dir,
-                                 '../precompute_shortest_routes/saved_network_and_ontology/dictionaries_that_map_pairs_of_nodes_to_ontology_items/')
+                                 '../precompute_shortest_routes/saved_data/precomputed_shortest_routes/')
         path = 'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_%s_shortest_routes' % (
             str(k_shortest_routes))
         with open(main_path + path, 'rb') as f:
@@ -134,7 +134,7 @@ class network_and_ontology_store:
         - **Values**: Sets containing vertex-edge pairs represented as strings in the format 
           "element1 property element2", indicating all instances where the property is involved.
         '''
-        main_path = os.path.join(current_dir, '../precompute_shortest_routes/saved_network_and_ontology/')
+        main_path = os.path.join(current_dir, '../precompute_shortest_routes/saved_data/')
         with open(main_path + 'dictionary_that_maps_property_to_all_ontology_triples_as_string', 'rb') as f:
             loaded_data = pickle.load(f)
         self.dictionary_that_maps_property_to_all_ontology_triples_as_string = loaded_data

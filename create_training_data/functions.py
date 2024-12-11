@@ -4,7 +4,7 @@ import requests
 import urllib.parse
 from shapely import from_wkt # this needs to be installed manually!!!
 # ( i did it in pycharm, think about requirements file)
-from Creating_Training_data.query_components import SpecialTokens, ADDRESS_QUESTION
+from create_training_data.query_components import SpecialTokens, ADDRESS_QUESTION
 
 SUGGEST_URL = 'http://api.pdok.nl/bzk/locatieserver/search/v3_1/free' \
               '?fq=type:(gemeente OR woonplaats OR adres OR provincie) AND bron:BAG&q={}'

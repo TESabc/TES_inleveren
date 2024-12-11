@@ -3,7 +3,7 @@ import random
 from random import randint
 from itertools import islice
 from transformers import AutoTokenizer # this one needs to be installed
-from Creating_Training_data.query_components import SpecialTokens
+from create_training_data.query_components import SpecialTokens
 
 
 def reload(cls):

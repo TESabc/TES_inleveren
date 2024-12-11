@@ -1,7 +1,7 @@
 import os
 import json
 import random
-from Creating_Training_data.functions import Functions
+from create_training_data.functions import Functions
 
 os.environ['CURL_CA_BUNDLE'] = ''
 # Either gets environment variable OUTPUT_DIR or otherwise sets this equal to the directory of the current file
@@ -311,12 +311,12 @@ def create_main_training_data_for_production(target_amount_of_questions_for_each
 
     Output:
         The training data is saved at:
-        "Training_data/training_data/training_data_brt_filter.json"
+        "training_data/training_data_brt_filter.json"
     """
     # We register the query variant that we use in our research.
-    from Creating_Training_data.brt_filter_query import BrtFilterQuery
+    from create_training_data.brt_filter_query import BrtFilterQuery
     query_registry = QueryRegistry()
-    query_registry.register((BrtFilterQuery, r'Production_templates\brt_filter_query'))
+    query_registry.register((BrtFilterQuery, r'brt_filter_query'))
 
     # Generate the specified number of training data examples
     qid_counter = 0
@@ -368,7 +368,7 @@ def create_main_training_data_for_production(target_amount_of_questions_for_each
     parent_of_parent_directory = os.path.dirname(parent_directory)
 
     json_filename = os.path.join(parent_of_parent_directory,
-                                 r'Training_data\Main_Training_data\training_data_brt_filter.json')
+                                 r'training_data\training_data_brt_filter.json')
 
     with open(json_filename, 'w') as json_file:
         json.dump(list_with_questions, json_file, indent=2)
