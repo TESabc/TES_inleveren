@@ -1,5 +1,5 @@
 # Graph Traversal Algorithms and In-Context Learning for Enhanced Generalization in Text-to-SPARQL
-This repository contains the official implementation of the research paper **“Graph Traversal Algorithms and In-Context Learning for Enhanced Generalization in Text-to-SPARQL”**. The code is designed to support the findings and methodologies presented in the paper. It enables semantic parsing of SPARQL queries on Kadaster Knowledge Graph (KKG).
+This repository contains the official implementation of the research paper **“Graph Traversal Algorithms and In-Context Learning for Enhanced Generalization in Text-to-SPARQL”**. The code enables semantic parsing of SPARQL queries on Kadaster Knowledge Graph (KKG), and is designed to support the findings and methodologies presented in the paper. 
 
 The software is implemented in **Python 3** (https://www.python.org/) and utilizes the **LangChain framework** (https://www.langchain.com/). It also incorporates the **NetworkX package** (https://networkx.org/) for graph-based computations. Additionally, the system leverages **GPT-4-32k** (https://openai.com/index/gpt-4-research/).
 
