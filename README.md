@@ -149,7 +149,7 @@ The `ontology_condensation_inference.py` file in this directory defines an objec
 
 This object offers the following functionalities:
 
-1. **Apply GTOC**: Implement the Graph Traversal Ontology Condenser (GTOC) approach for ontology condensation, as described in our research paper.
+1. **Apply GTOC**: Implement the Graph Traversal Ontology Condenser (GTOC) approach for ontology condensation, as described in our research paper. (Using the precomputed results)
 2. **Apply the Naive Ontology Condensation Approach**: Execute the naive ontology condensation method, also outlined in our research.
 3. **Access Ontology Information**: Retrieve various details related to the ontology.
 4. **Access the NetworkX Ontology Graph**: Interact with the previously constructed NetworkX ontology graph.
