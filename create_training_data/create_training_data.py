@@ -311,7 +311,7 @@ def create_main_training_data_for_production(target_amount_of_questions_for_each
 
     Output:
         The training data is saved at:
-        "Training_data/main_training_data/training_data_brt_filter.json"
+        "Training_data/saved_training_data/training_data_brt_filter.json"
     """
     # We register the query variant that we use in our research.
     from Creating_Training_data.brt_filter_query import BrtFilterQuery
