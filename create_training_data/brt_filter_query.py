@@ -2815,8 +2815,6 @@ class BrtFilterQuery(Query):
         '''
         Here we deal with the adresses.
 
-        QUESTION: What is own_adress???
-
         In the last case in the if-statements we return an adress question (what is your adress?)
 
         We concatenate the list with question words into a sentence.
