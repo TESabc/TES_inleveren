@@ -121,7 +121,7 @@ print(current_dir)
 def vector_store_creator():
     # We load our trainingdata
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(current_dir, '../Training_data/Main_Training_data/training_data_brt_filter.json')
+    path = os.path.join(current_dir, '../training_data/training_data_brt_filter.json')
     with open(path, 'r') as file:
         data = json.load(file)
 

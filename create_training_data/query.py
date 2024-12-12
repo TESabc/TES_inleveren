@@ -5,8 +5,8 @@ import random
 
 from collections import defaultdict
 from abc import ABC, abstractmethod
-from Creating_Training_data.tokenizer import Tokenizer
-from Creating_Training_data.query_components import MORE_INFORMATION, TEMPLATE_OPTIONS
+from create_training_data.tokenizer import Tokenizer
+from create_training_data.query_components import MORE_INFORMATION, TEMPLATE_OPTIONS
 
 
 class Query(ABC):

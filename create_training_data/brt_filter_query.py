@@ -2,10 +2,10 @@ import random
 import string
 import requests
 
-from Creating_Training_data.query import Query
-from Creating_Training_data.functions import Functions
-from Creating_Training_data.dependencies import Dependency, get_dependency_text
-from Creating_Training_data.query_components import (SpecialTokens, get_template_formatted, Template, STREET, CITY,
+from create_training_data.query import Query
+from create_training_data.functions import Functions
+from create_training_data.dependencies import Dependency, get_dependency_text
+from create_training_data.query_components import (SpecialTokens, get_template_formatted, Template, STREET, CITY,
                                                      WIJK, BUURT,
                                                      GEMEENTE, NEWEST, OLDEST, BIGGEST, SMALLEST, PARCEL_SURFACE,
                                                      AMOUNT, BUILD_YEAR,
@@ -14,6 +14,10 @@ from Creating_Training_data.query_components import (SpecialTokens, get_template
                                                      PARCEL, BEFORE, AFTER, SQUARE_METER, ACCOMODATION_OBJECTS, SURFACE,
                                                      MONUMENTAL_STATUS, CHANGE_ADDRESS_SUGGESTION, PREMISES, brt_properties_to_kad_con)
 
+"""
+This file provides functionality for generating training data that pairs natural language questions 
+with their corresponding SPARQL queries. 
+"""
 
 class BrtFilterQuery(Query):
     _weight = 3
@@ -2810,8 +2814,6 @@ class BrtFilterQuery(Query):
 
         '''
         Here we deal with the adresses.
-
-        QUESTION: What is own_adress???
 
         In the last case in the if-statements we return an adress question (what is your adress?)
 

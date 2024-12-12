@@ -5,24 +5,24 @@ questions:
     constructionyear:
       - groter
       - kleiner
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: hoeveel {property} zijn tussen bouwjaar {constructionyear} en {constructionyear} in {granularity} {location} gebouwd
     amount: aantal
     constructionyear:
       - groter
       - kleiner
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: hoeveel {property} zijn met {constructionyear} in {granularity} {location} gebouwd
     amount: aantal
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: geef mij de {brtproperty} in {granularity} {location} met {constructionyear}
 
   - query: geef mij de {brtproperty} in {granularity} {location} met {housesize}
 
-  - query: geef mij de {brtproperty} in {granularity} {location} met {parcelsize}
+  - query: geef mij de {brtproperty} in {granularity} {location} met {parcelsize} 
 
   - query: geef mij de {brtproperty} in {granularity} {location} met {housesize} en waarbij de {parcelsize} is
 
@@ -30,6 +30,9 @@ questions:
     amount: aantal
 
   - query: hoeveel {brtproperty} staan in {granularity} {location}
+    amount: aantal
+
+  - query: hoeveel {brtproperty} met {housesize} staan in {granularity} {location}
     amount: aantal
 
   - query: hoeveel {brtproperty} met {parcelsize} staan in {granularity} {location}
@@ -53,6 +56,26 @@ questions:
   - query: geef mij de panden met een {parcelsize} in {location}
     granularity: woonplaats
     property: gebouwen
+
+  - query: geef mij alle woningen in {location} met {parcelsize}
+    granularity: woonplaats
+    property: huizen
+
+  - query: geef mij alle woningen in {location} waarvan de {parcelsize} is
+    granularity: woonplaats
+    property: huizen
+
+  - query: geef mij alle woningen in {location} waarvan het {housesize} is
+    granularity: woonplaats
+    property: huizen
+
+  - query: geef mij alle woningen in {location} waarvan het {housesize} is en de {parcelsize}
+    granularity: woonplaats
+    property: huizen
+
+  - query: geef mij alle huizen in {location} met {constructionyear} en {parcelsize} meters
+    granularity: woonplaats
+    property: huizen
 
   - query: geef mij de oudste {brtproperty} in {granularity} {location} met {constructionyear}
     property: gebouwen
@@ -102,8 +125,13 @@ questions:
 
   - query: geef me de {brtproperty} in {granularity} {location} met {constructionyear} en {parcelsize}
 
-  - query: geef me de {brtproperty} in {location} met {constructionyear} en {housesize}
-    granularity: woonplaats
+  - query: geef mij het grootste perceel van een {brtproperty} in de {granularity} {location}
+    property: percelen
+    order: biggest
+
+  - query: geef mij het kleinste perceel van een {brtproperty} in de {granularity} {location}
+    property: percelen
+    order: smallest
 
   - query: welk {brtproperty} in de {granularity} {location} heeft het kleinste oppervlakte
     property: gebouwen
@@ -111,7 +139,7 @@ questions:
 
   - query: welk {brtproperty} in de {granularity} {location} heeft het grootste oppervlakte
     property: gebouwen
-    order: biggest 
+    order: biggest
 
   - query: wat is het oudste {brtproperty} in {location}
     property: gebouwen
@@ -137,7 +165,6 @@ questions:
     property: gebouwen
     order: oldest
     granularity: woonplaats
-
 
   - query: wat is het kleinste {brtproperty} in {location}
     property: gebouwen
@@ -171,9 +198,16 @@ questions:
     property: gebouwen
     order: newest
 
+  - query: geef mij de kleinste {brtproperty} in {granularity} {location} met {constructionyear}
+    property: gebouwen
+    order: smallest
+
+  - query: Geef mij het kleinste perceel behorend tot {brtproperty}
+    property: percelen
+    order: smallest
+
   - query: welke {brtproperty} staan er in {granularity} {location}
     property: gebouwen
-
 
   - query: welke {brtproperty} is het oudste
     property: gebouwen
@@ -182,6 +216,14 @@ questions:
   - query: welke {brtproperty} is het nieuwst
     property: gebouwen
     order: newest
+
+  - query: wat is het kleinste perceel behorend tot {brtproperty} met {constructionyear}
+    property: percelen
+    order: biggest
+
+  - query: wat is het kleinste perceel behorend tot {brtproperty} met {constructionyear}
+    property: percelen
+    order: smallest
 
   - query: wat is de kleinste {brtproperty} in {granularity} {location} met {constructionyear}
     property: gebouwen
@@ -214,18 +256,39 @@ questions:
     property: percelen
     order: smallest
 
+  - query: geef mij het kleinste perceel in {location} behorend to een kerk
+    brtproperty: kerk
+    granularity: woonplaats
+    property: percelen
+    order: smallest
+
   - query: welk {brtproperty} in {granularity} {location} heeft het {order} {property}
     property: gebouwen
 
+  - query: mag ik het oudste huis in de straat {location}
+    property: huizen
+    order: oldest
+    granularity: straat
+
+  - query: mag ik het grootste huis in de straat {location}
+    granularity: straat
+    property: huizen
+    order: biggest
+
   - query: mag ik de {order} {brtproperty} in {granularity} {location}
+
   - query: mag ik de {order} {brtproperty} met {constructionyear} in {granularity} {location}
+
   - query: mag ik de {order} {property} in {granularity} {location}
-    property: gebouwen
+    excludeproperty: [percelen]
+
   - query: mag ik de {order} {property} met {constructionyear} in {granularity} {location}
     excludeproperty: [percelen]
+
   - query: ik wil graag de {brtproperty} met {constructionyear} in {granularity} {location}
-  - query: hoi loki mag ik {brtproperty} met {constructionyear} in {granularity} {location}
+
   - query: wat zijn de {brtproperty} in {granularity} {location}
+
   - query: geef me de {brtproperty} in {granularity} {location}
 
   - query: ik wil de {brtproperty} in {granularity} {location}
@@ -235,7 +298,7 @@ questions:
   - query: wat is de {order} {brtproperty} in de {granularity} {location}
 
   - query: wat is de {order} {property} in de {granularity} {location}
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: wat zijn de {brtproperty} in {granularity} {location} met {constructionyear}
 
@@ -251,7 +314,7 @@ questions:
   - query: wat is de {order} {brtproperty} in {granularity} {location}
 
   - query: wat is de {order} {property} in {granularity} {location}
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: welke {brtproperty} kan ik vinden in {granularity} {location} met {constructionyear}
     property: gebouwen
@@ -268,47 +331,44 @@ questions:
 
   - query: ik wil de {brtproperty} in {granularity} {location} zien {constructionyear}
 
-# Gaat 90% van de keren goed. (denk ik)
   - query: welke {property} hebben een {parcelsize} en {housesize} in {location}
     granularity: woonplaats
-    property: gebouwen
 
-# Hier ervoor gezorgd dat we geen percelen selecteren want die hebben geen constructionyear
   - query: welke {property} hebben een {housesize} en {constructionyear} in {location}
     granularity: woonplaats
     excludeproperty: [percelen]
 
-# Hier ervoor gezorgd dat we geen percelen selecteren want die hebben geen constructionyear
   - query: welke {property} hebben een {housesize} en {constructionyear} en {parcelsize} in {location}
     granularity: woonplaats
     excludeproperty: [percelen]
 
-# Hier ervoor gezorgd dat we geen percelen selecteren want die hebben geen constructionyear
   - query: welke {property} hebben een {housesize} en {constructionyear} en {parcelsize} in {granularity} {location}
     excludeproperty: [percelen]
 
-# GOED
   - query: ik wil de {brtproperty} in {granularity} {location} zien {constructionyear}
 
-# GESPLITST
   - query: ik wil de {order} {brtproperty} in {granularity} {location} zien met {constructionyear}
+
   - query: ik wil de {order} {property} in {granularity} {location} zien met {constructionyear}
     excludeproperty: [percelen]
 
   - query: wat is de {order} {brtproperty} in {granularity} {location}
+
   - query: wat is de {order} {property} in {granularity} {location}
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: geef mij het {order} {property} in {granularity} {location}
-    property: gebouwen
+    excludeproperty: [percelen]
+
   - query: geef mij de {order} {brtproperty} in {granularity} {location}
 
-
   - query: vind de {order} {brtproperty} in {granularity} {location}
+
   - query: vind de {order} {property} in {granularity} {location}
-    property: gebouwen
+    excludeproperty: [percelen]
 
   - query: geef mij de {brtproperty} in {granularity} {location}
+
   - query: geef mij de {brtproperty} in {location}
     granularity: woonplaats
 
@@ -342,6 +402,15 @@ questions:
     granularity: woonplaats
     amount: aantal
 
+  - query: geef mij de woningen en hun oppervlaktes in {granularity} {location}
+    property: huizen
+    extra_return: oppervlakte
+
+  - query: ik wil de woningen en hun oppervlaktes weten in {location}
+    property: huizen
+    granularity: woonplaats
+    extra_return: oppervlakte
+
   - query: ik wil de woningen en hun bouwjaren in {granularity} {location}
     property: huizen
     extra_return: bouwjaar
@@ -356,3 +425,35 @@ questions:
     granularity: woonplaats
     extra_return: bouwjaar
 
+  - query: ik wil alle percelen en de bijbehorende perceeloppervlaktes in {granularity} {location}
+    property: percelen
+    extra_return: perceeloppervlakte
+
+  - query: ik wil alle percelen en de oppervlakten daarvan in {location}
+    property: percelen
+    granularity: woonplaats
+    extra_return: perceeloppervlakte
+
+  - query: ik wil alle verblijfsobjecten behorend tot {brtproperty} in {location}
+    property: verblijfsobjecten
+    granularity: woonplaats
+
+  - query: ik wil alle percelen behorend tot {brtproperty} in {location}
+    property: percelen
+    granularity: woonplaats
+
+  - query: ik wil alle verblijfsobjecten behorend tot {brtproperty} in {granularity} {location}
+    property: verblijfsobjecten
+
+  - query: ik wil alle percelen behorend tot {brtproperty} in {granularity} {location}
+    property: percelen
+
+  - query: ik wil alle percelen en de bijbehorende geometrie in {granularity} {location}
+    property: percelen
+    extra_return: geometrie
+
+  - query: ik wil alle percelen en de geometrie daarvan in {location}
+    property: percelen
+    granularity: woonplaats
+    extra_return: geometrie
+  
