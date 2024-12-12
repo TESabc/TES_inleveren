@@ -125,7 +125,7 @@ The `create_training_data.py` file is the primary script for generating the trai
    - `tokenizer.py`
 
 ### vector_stores
-This directory is structured to include five sub-folders, each containing a FAISS vector store:
+This directory is structured to include five sub-folders, each containing a FAISS vector store with training examples:
 
 1. **Geographical Granularities**: Four subfolders are provided, corresponding to distinct geographical granularities, and are utilized for meta-data prefiltering.
 2. **Combined Vector Store**: The subfolder for the combined vector store, which consolidates all granularities, is excluded from the repository due to GitHub's file size limitations.
