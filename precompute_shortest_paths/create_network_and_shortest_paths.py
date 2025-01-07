@@ -35,6 +35,7 @@ config.read(path)
 locatie_url = config['KADASTER']['LOC_SEARCH_API']
 lookup_url = config['KADASTER']['LOC_LOOKUP_API']
 sparql_url = config['KADASTER']['KKG_API']
+token = config['KADASTER']['TOKEN']
 
 os.environ['OPENAI_API_KEY'] = config['OPENAI_GPT_3.5_TURBO']['AZURE_API_KEY']
 os.environ['OPENAI_API_TYPE'] = config['OPENAI_GPT_3.5_TURBO']['AZURE_API_TYPE']
@@ -169,7 +170,7 @@ def run_sparql(query: str, url=sparql_url,
 
     user_agent_header : str, optional
         An optional User-Agent header to include in the HTTP request. This can be used to specify
-        the client making the request.
+        the client making the request, aiding in analytics or access control.
 
     internal : bool, optional
         A flag that determines the behavior when an unsuccessful HTTP response is received:
@@ -196,7 +197,8 @@ def run_sparql(query: str, url=sparql_url,
     """
     headers = {
         'Accept': 'application/sparql-results+json',
-        'Content-Type': 'application/sparql-query'
+        'Content-Type': 'application/sparql-query',
+        'Authorization': f"Bearer {token}"
     }
     if user_agent_header is not None:
         headers['User-Agent'] = user_agent_header
@@ -1127,7 +1129,7 @@ class graph_network_creator:
            'dictionary_that_maps_all_pairs_to_the_necessary_ontology_items_in_top_k_shortest_routes'.
 
         All data is saved in the
-        'precompute_shortest_routes/saved_data/precomputed_shortest_routes/'
+        'precompute_shortest_paths/saved_data/precomputed_shortest_routes/'
         directory.
 
         Returns:

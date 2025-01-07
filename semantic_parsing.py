@@ -51,6 +51,8 @@ config.read(path)
 locatie_url = config['KADASTER']['LOC_SEARCH_API']
 lookup_url = config['KADASTER']['LOC_LOOKUP_API']
 sparql_url = config['KADASTER']['KKG_API']
+token = config['KADASTER']['TOKEN']
+
 os.environ['AZURE_OPENAI_API_KEY'] = config[gpt_option]['AZURE_API_KEY']
 os.environ['OPENAI_API_VERSION'] = config[gpt_option]['AZURE_API_VERSION']
 os.environ['AZURE_OPENAI_ENDPOINT'] = config[gpt_option]['AZURE_API_BASE']
@@ -133,7 +135,8 @@ def run_sparql(query: str, url=sparql_url,
     """
     headers = {
         'Accept': 'application/sparql-results+json',
-        'Content-Type': 'application/sparql-query'
+        'Content-Type': 'application/sparql-query',
+        'Authorization': f"Bearer {token}"
     }
     if user_agent_header is not None:
         headers['User-Agent'] = user_agent_header
@@ -2296,7 +2299,7 @@ In this section, you can implement the methods described above and run this file
 
 Ensure the "verbose" parameter is set to True to display the results in the console.
 '''
-semantic_parsing_few_shot_with_ontology('Hoeveel percelen zijn er die niet bij een nummeraanduiding horen?', 1)
+# semantic_parsing_few_shot_with_ontology('Hoeveel percelen zijn er die niet bij een nummeraanduiding horen?', 1)
 
 # semantic_parsing_workflow_few_shot_NO_ONTOLOGY('Geef mij de nieuwste brandweerkazerne in gemeente eindhoven',
 #                                                    number_of_few_shot_examples=5,
@@ -2305,3 +2308,28 @@ semantic_parsing_few_shot_with_ontology('Hoeveel percelen zijn er die niet bij e
 #                                                    example_retrieval_style='max_marginal_similarity')
 
 # semantic_parsing_workflow('Hoeveel percelen zijn er in provincie Gelderland?', 7)
+
+
+prefix_string = network_and_ontology_store(7).prefix_string
+query_for_testing = """
+SELECT DISTINCT (COUNT(DISTINCT ?geb) AS ?aantal)
+WHERE {
+    ?vbo a sor:Verblijfsobject;
+        sor:hoofdadres ?na;
+        sor:maaktDeelUitVan ?geb.
+
+
+    ?gebz sor:hoortBij ?vbo;
+        kad:gebouwtype kad-con:gevangenis.
+
+    ?woonplaats a sor:Woonplaats;
+        skos:prefLabel "Rotterdam"@nl;
+        ^sor:ligtIn ?openbareruimte.
+    ?openbareruimte a sor:OpenbareRuimte;
+        ^sor:ligtAan ?na.
+    ?na a sor:Nummeraanduiding.
+
+}
+"""
+result_1 = run_sparql(prefix_string + '\n' + query_for_testing)
+print(result_1)
